@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számok sorbarendezése</title>
+</head>
+<body>
+    <label for="szam1">Adj meg 5 számot: </label>
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+
+    <button onclick="rendezes()">Rendezés</button>
+
+    <div id="megjelenit"></div>
+    <script> 
+    /*
+        - 5 bekérési elem (5 szám) egyszerre
+        - Valamelyik nem szám: piros bg, fehér color
+        - Alatta zöld négyzetben növekvő sorrend
+    */
+   function rendezes()
+   {
+        document.getElementById("megjelenit").innerHTML = "";
+        let inputok = document.querySelectorAll("input");
+        console.log(inputok)
+        for (let i = 0; i < inputok.length; i++)
+        {
+            if (isNaN(inputok[i].value))
+            {
+                inputok[i].style.backgroundColor = "red";
+                inputok[i].style.color = "white";
+            }
+            else
+            {
+                inputok[i].style.backgroundColor = "white";
+                inputok[i].style.color = "black";
+                megjelenit.appendChild(document.createTextNode(inputok[i].value + ", "));
+            }
+        }
+    }   
+    </script>
+</body>
+</html>
+
