@@ -57,14 +57,13 @@
             $feltoltesOk = 1;
             $kepTipus = strtolower(pathinfo($celFile,PATHINFO_EXTENSION));
             // Check if image file is a actual image or fake image
-            echo"********";
             if(isset($_FILES["fajl"]))
                 {
-                    echo "---------";
                     $check = getimagesize($_FILES["fajl"]["tmp_name"]);
+                    var_dump($check);
                     if($check !== false)
                         {
-                            echo "File is an image - " . $check["mime"] . ".";
+                            echo "File is an image - <br>" . $check["mime"] . ".";
                             $feltoltesOk = 1;
                         }
                     else
@@ -74,7 +73,7 @@
                         }
 
                     // Check file size
-                    if ($_FILES["fajl"]["size"] > 500000) {
+                    if ($_FILES["fajl"]["size"] > 900000) {
                     echo "Sorry, your file is too large.";
                     $feltoltesOk = 0;
                     }
