@@ -111,10 +111,29 @@
         default => "<h1>"."Nincs ilyen hónap"."</h1>",
         };
 
-        echo $text;
+        return $text;
     }
     
         honapNeve();
+
+    function randomSzam()
+        {
+            $szamok = [];
+            $fussLe = 5;
+                for ($i=0; $i < $fussLe; $i++)
+                    {
+                        $szam = rand(12,20);
+                        echo $szam;
+                        array_push($szamok,$szam);
+                        $i++;
+                        }
+            echo $szamok;
+        }
+
+        randomSzam();
+
+
+        //Az én szememben rengeteget fejlődtél 🫀
 ?>
 </body>
 </html>
