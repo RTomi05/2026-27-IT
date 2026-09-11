@@ -96,6 +96,8 @@
                         if (move_uploaded_file($_FILES["fajl"]["tmp_name"], $celFile))
                             {
                         echo "The file ". htmlspecialchars( basename( $_FILES["fajl"]["name"])). " has been uploaded.";
+                        meretez($celFile,"images/kicsi/" . basename($_FILES["fajl"]["name"]),50,50);
+                        meretez($celFile,"images/nagy/" . basename($_FILES["fajl"]["name"]),500,500);
                             }
                         else
                             {
@@ -105,6 +107,42 @@
                 }
 
             phpinfo(32);
+
+            //https://www.php.net/manual/en/function.imagecopyresampled.php
+            function meretez($forras,$cel,$szeles,$magas)
+            {
+                // The file
+                $filename = $forras;
+
+                // Set a maximum height and width
+                $width = $szeles;
+                $height = $magas;
+
+                // Content type
+                //header('Content-Type: image/jpeg');
+
+                // Get new dimensions
+                list($width_orig, $height_orig) = getimagesize($filename);
+
+                $ratio_orig = $width_orig/$height_orig;
+
+                if ($width/$height > $ratio_orig)
+                {
+                    $width = $height*$ratio_orig;
+                }
+                else
+                {
+                $height = $width/$ratio_orig;
+                }
+
+                // Resample
+                $image_p = imagecreatetruecolor($width, $height);
+                $image = imagecreatefromjpeg($filename);
+                imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+
+                // Output
+                imagejpeg($image_p, $cel, 100);
+            }
             ?>
 
             <div class="text-wrap" style="margin: 130px; border: 10px yellow solid; width: 1000px;">
@@ -115,6 +153,8 @@
     </div>
     
     <script>
+        //1. kép: 50 x 50
+        //2. kép: 500 x 500
         function bekuld()
         {
             //console.log("jo");

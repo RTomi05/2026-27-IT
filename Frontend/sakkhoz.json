@@ -1,0 +1,24 @@
+{
+	"script": [
+		"const tabla = document.querySelector('#tabla');",
+		"const tbody = document.createElement('tbody');",
+		"let sor;",
+		"",
+		"for (let i = 8; i >= 1; i--) {",
+		"    sor = document.createElement('tr');",
+		"    tbody.appendChild(sor);",
+		"",
+		"    const fejlec = document.createElement('th');",
+		"    fejlec.textContent = i;",
+		"    sor.appendChild(fejlec);",
+		"",
+		"    for (let k = 0; k < 8; k++) {",
+		"        const cella = document.createElement('td');",
+		"        cella.className = (i + k) % 2 === 0 ? 'vilagos' : 'sotet';",
+		"        sor.appendChild(cella);",
+		"    }",
+		"}",
+		"",
+		"tabla.appendChild(tbody);"
+	]
+}
