@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tobbDim")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73003fbfc02c897fe3271f93102b590478ecab90")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db63f6d85fce536764d81552b8893d526d073eb2")]
 [assembly: System.Reflection.AssemblyProductAttribute("tobbDim")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tobbDim")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,16 @@
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\bin\Debug\net10.0\tobbDim.exe
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\bin\Debug\net10.0\tobbDim.deps.json
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\bin\Debug\net10.0\tobbDim.runtimeconfig.json
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\bin\Debug\net10.0\tobbDim.dll
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\bin\Debug\net10.0\tobbDim.pdb
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\tobbDim.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\tobbDim.AssemblyInfoInputs.cache
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\tobbDim.AssemblyInfo.cs
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\tobbDim.csproj.CoreCompileInputs.cache
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\tobbDim.sourcelink.json
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\tobbDim.dll
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\refint\tobbDim.dll
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\tobbDim.pdb
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\tobbDim.genruntimeconfig.cache
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\ref\tobbDim.dll
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\tobbDim\obj\Debug\net10.0\tobbDim.csproj.Up2Date

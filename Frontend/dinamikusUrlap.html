@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <style>
+        input{
+            background-color: darkgreen;
+            margin: 10px;
+        }
+    </style>
+    <title>Űrlap</title>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1>Űrlap</h1>
+            <div class="m-3" id="ideJohet">
+            </div>
+            <button class="bg-success" onclick="bekuld()" style="margin: 10px;">Űrlap beküldése</button>
+            <button class="bg-success" onclick="hozzaad()" style="margin: 10px;">Mező hozzáadása</button>
+            <button class="bg-success" onclick="csere()" style="margin: 10px;">Csere</button>
+        </div>
+    </div>
+
+    <script>
+        let db = 2;
+        function hozzaad()
+        {
+            let ujSor = document.createElement("br");
+            let ujInput = document.createElement("input");
+            ujInput.name = "input" + db;
+            document.getElementById("ideJohet").appendChild(ujSor);
+            document.getElementById("ideJohet").appendChild(ujInput);
+            db = db+1;
+            //console.log(db);
+        }
+
+        const inputok = document.getElementById('ideJohet');
+        let elsoInput = "";
+        let masodikInput = null;
+
+        inputok.addEventListener('click', (esemeny) => {
+            if (esemeny.target.tagName !== 'INPUT') return;
+            const aktualisInput = esemeny.target;
+            if (!elsoInput) {
+                elsoInput = aktualisInput;
+                elsoInput.style.backgroundColor = '#ffe082';
+                return;
+            }
+            if (elsoInput === aktualisInput) {
+                elsoInput.style.backgroundColor = '';
+                elsoInput = null;
+                return;
+            }
+            masodikInput = aktualisInput;
+            masodikInput.style.backgroundColor = '#ffe082';
+            });
+
+        function csere()
+        {
+            if (!elsoInput || !masodikInput) return;
+
+            const ideiglenesErtek = elsoInput.value;
+            elsoInput.value = masodikInput.value;
+            masodikInput.value = ideiglenesErtek;
+            elsoInput.style.backgroundColor = '';
+            masodikInput.style.backgroundColor = '';
+            elsoInput = null;
+            masodikInput = null;
+        }
+
+    </script>
+</body>
+</html>
