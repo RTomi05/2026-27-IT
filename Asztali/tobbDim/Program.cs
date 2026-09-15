@@ -94,5 +94,66 @@ internal class Program
 
         Console.WriteLine("Az átlagos magasság a legalacsonyabb és a legmagasabb pont között: " + atlag + " m");
 
+
+        //8. feladat
+
+        int lejto = 0;
+        int eleje = 0;
+        for(int i = 0; i < meresek.Length-1;i++)
+        {
+            if (meresek[i+1] - meresek[i] < lejto)
+            {
+                eleje = i;
+                lejto = meresek[i+1] - meresek[i];
+            }
+        }
+        //Console.WriteLine(lejto);
+        Console.WriteLine(eleje + ". és " + (eleje+1) + ". mérés között volt a legmeredekebb lejtő");
+
+        //9. feladat
+
+        int emelkedo = 0;
+        eleje = 0;
+        for (int i = 0; i < meresek.Length - 1; i++)
+        {
+            if (meresek[i + 1] - meresek[i] > emelkedo)
+            {
+                eleje = i;
+                emelkedo = meresek[i + 1] - meresek[i];
+            }
+        }
+        Console.WriteLine(emelkedo);
+        Console.WriteLine(eleje + ". és " + (eleje + 1) + ". mérés között volt a legmeredekebb emelkedő");
+
+        //10. és 11. feladat
+
+        int jartFennsik = 0;
+        for(int i = 0;i < meresek.Length -1;i++)
+        {
+            if (Math.Abs(meresek[i+1] - meresek[i]) < 5 && meresek[i] > 600)
+            {
+                jartFennsik++;
+            }
+        }
+        if(jartFennsik > 0)
+        {
+            Console.WriteLine("Járt fennsíkon.");
+        }
+        else
+        {
+            Console.WriteLine("Nem járt fennsíkon.");
+        }
+
+        Console.WriteLine(jartFennsik + " alkalommal járt fennsíkon.");
+
+        //12. feladat
+
+        int szintkulonbseg = 0;
+        for (int i = 0; i < meresek.Length - 1; i++)
+        {
+            szintkulonbseg += Math.Abs(meresek[i + 1] - meresek[i]);
+
+        }
+        Console.WriteLine("A teljes megtett szintkülönbség: " + szintkulonbseg);
     }
 }
