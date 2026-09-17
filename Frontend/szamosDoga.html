@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>Milyen csodás ez a nap</title>
+    <style>
+        input{
+            margin: 10px;
+        }
+        button{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="col-lg-12">
+            <h1>Számok</h1>
+            <label for="">Szám megadása:</label>
+        <input type="number" name="szam" id="szam" class="bg-info"><br>
+        <p id="valtoztatas">Adjon meg egy számot!</p>
+        <button onclick="ellenorzes()" class="bg-success">Ellenőrzés</button>
+        </div>
+            <div class="row">
+            <div class="col-sm-1 p-3 bg-primary text-white" id="kettovel"><button onclick="rendezes()">Rendezés</button> 2</div>
+            <div class="col-sm-1 p-3 bg-dark text-white" id="harommal"><button onclick="rendezes()">Rendezés</button>3</div>
+            <div class="col-sm-1 p-3 bg-primary text-white" id="neggyel" ><button onclick="rendezes()">Rendezés</button>4</div>
+            <div class="col-sm-1 p-3 bg-dark text-white" id="ottel"><button onclick="rendezes()">Rendezés</button>5</div>
+            <div class="col-sm-1 p-3 bg-primary text-white" id="hattal"><button onclick="rendezes()">Rendezés</button>6</div>
+            <div class="col-sm-1 p-3 bg-dark text-white" id="hettel"><button onclick="rendezes()">Rendezés</button>7</div>
+            <div class="col-sm-1 p-3 bg-primary text-white" id="nyolccal"><button onclick="rendezes()">Rendezés</button>8</div>
+            <div class="col-sm-1 p-3 bg-dark text-white" id="kilenccel"><button onclick="rendezes()">Rendezés</button>9</div>
+            <div class="col-sm-1 p-3 bg-primary text-white" id="tizzel"><button onclick="rendezes()">Rendezés</button>10</div>
+            <div class="col-sm-1 p-3 bg-dark text-white" id="tizeneggyel"><button onclick="rendezes()">Rendezés</button>11</div>
+            <div class="col-sm-1 p-3 bg-primary text-white" id="tizenkettovel"><button onclick="rendezes()">Rendezés</button>12</div>
+            <div class="col-sm-1 p-3 bg-dark text-white" id="tizenharommal"><button onclick="rendezes()">Rendezés</button>13</div>
+        </div>     
+    </div>
+    <script>
+    function ellenorzes()
+    {
+        let szamok = [];
+        let szam = 0;
+        if(parseInt(document.getElementById("szam").value) > 0)
+        {
+            szam = document.getElementById("szam").value;
+            console.log("jo");
+            szamok.push(szam);
+            document.getElementById("valtoztatas").innerHTML = ""
+            if(szam % 2 == 0)
+            {
+                document.getElementById("kettovel").innerHTML += "<br>" + szam;
+            }
+            if(szam % 3 == 0)
+            {
+                document.getElementById("harommal").innerHTML += "<br>" + szam;
+            }
+            if(szam % 4 == 0)
+            {
+                document.getElementById("neggyel").innerHTML += "<br>" + szam;
+            }
+            if(szam % 5 == 0)
+            {
+                document.getElementById("ottel").innerHTML += "<br>" + szam;
+            }
+            if(szam % 6 == 0)
+            {
+                document.getElementById("hattal").innerHTML += "<br>" + szam;
+            }
+            if(szam % 7 == 0)
+            {
+                document.getElementById("hettel").innerHTML += "<br>" + szam;
+            }
+            if(szam % 8 == 0)
+            {
+                document.getElementById("nyolccal").innerHTML += "<br>" + szam;
+            }
+            if(szam % 9 == 0)
+            {
+                document.getElementById("kilenncel").innerHTML += "<br>" + szam;
+            }
+            if(szam % 10 == 0)
+            {
+                document.getElementById("tizzel").innerHTML += "<br>" + szam;
+            }
+            if(szam % 11 == 0)
+            {
+                document.getElementById("tizeneggyel").innerHTML += "<br>" + szam;
+            }
+            if(szam % 12 == 0)
+            {
+                document.getElementById("tizenkettovel").innerHTML += "<br>" + szam;
+            }
+            if(szam % 13 == 0)
+            {
+                document.getElementById("tizenharommal").innerHTML += "<br>" + szam;
+            }
+        }
+        else{
+            document.getElementById("valtoztatas").innerHTML = "Nem jó érték!"
+        }
+
+        function rendezes()
+        {
+            //Ide jön a rendezés
+        }
+        
+    }
+    </script>
+</body>
+</html>
