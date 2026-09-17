@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinamikus Táblázat</title>
+    <style>
+        td{
+            border: 3px solid black;
+            height: 20px;
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <table id="tablazat" style="margin: 200px;">
+
+    </table>
+    <script>
+        let tabla = document.getElementById("tablazat");
+        for(let i = 0; i < 16; i++)
+        {
+            let sor = document.createElement("tr");
+            for(let j = 0; j < 16; j++)
+                {
+                    let oszlop = document.createElement("td");
+                    sor.appendChild(oszlop);
+                }
+        tabla.appendChild(sor);
+        }
+    </script>
+</body>
+</html>

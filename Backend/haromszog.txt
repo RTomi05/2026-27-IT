@@ -1,0 +1,7 @@
+a oldal: 3, b oldal: 4, c oldal: 5	 A háromszög megszerkeszthető. 
+a oldal: 0, b oldal: 5, c oldal: 2	 A háromszög nem szerkeszthető meg. 
+a oldal: 0, b oldal: 5, c oldal: 5	 A háromszög nem szerkeszthető meg. 
+a oldal: 3, b oldal: 4, c oldal: 5	 A háromszög megszerkeszthető. 
+a oldal: 3, b oldal: 4, c oldal: 5	 A háromszög megszerkeszthető. 
+a oldal: 3, b oldal: 4, c oldal: 5	 A háromszög megszerkeszthető. 
+a oldal: 3, b oldal: 4, c oldal: 5	 A háromszög megszerkeszthető. 
