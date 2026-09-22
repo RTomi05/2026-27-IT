@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>Űrlap</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row col-lg-12">
+            <div class="text-center">
+                <h1 class="text-center">Űrlap</h1>
+                    <div>
+                        <label for="">Név:</label>
+                        <input type="text" class="bg-info" id="nev" name="nev">
+                    </div>
+                <div class="m-3">
+                    <label for="">Email:</label>
+                    <input type="emai" class="bg-info" id="email" name="email"><br>
+                    <button type="submit" class=" btn bg-success mt-3" onclick="bekuld()">Beküld</button>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-5">
+                        <div>
+                            <div>
+                                <table class="table table-bordered mb-0 align-middle">
+                                    <thead class="table-warning">
+                                        <tr>
+                                            <th>Név</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adatok">
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function bekuld()
+        {
+            const nev = document.getElementById('nev').value;
+            const email = document.getElementById('email').value;
+            const tbody = document.getElementById('adatok');
+            //console.log(nev);
+            //console.log(email);
+            var row = tbody.insertRow(1);
+            var cella1 = row.insertCell(0);
+            var cella2 = row.insertCell(1);
+            cella1.innerHTML = nev;
+            cella2.innerHTML = email;
+            cella1.setAttribute('contenteditable', 'true');
+            cella2.setAttribute('contenteditable', 'true');
+            cella1.style.outline = 'none';
+            cella2.style.outline = 'none';
+        }
+    </script>
+</body>
+</html>

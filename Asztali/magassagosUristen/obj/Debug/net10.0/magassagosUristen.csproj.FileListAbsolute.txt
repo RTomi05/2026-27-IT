@@ -1,0 +1,16 @@
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\bin\Debug\net10.0\magassagosUristen.exe
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\bin\Debug\net10.0\magassagosUristen.deps.json
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\bin\Debug\net10.0\magassagosUristen.runtimeconfig.json
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\bin\Debug\net10.0\magassagosUristen.dll
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\bin\Debug\net10.0\magassagosUristen.pdb
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\magassagosUristen.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\magassagosUristen.AssemblyInfoInputs.cache
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\magassagosUristen.AssemblyInfo.cs
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\magassagosUristen.csproj.CoreCompileInputs.cache
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\magassagosUristen.sourcelink.json
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\magassagosUristen.dll
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\refint\magassagosUristen.dll
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\magassagosUristen.pdb
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\magassagosUristen.genruntimeconfig.cache
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\ref\magassagosUristen.dll
+C:\Users\Tomi\source\repos\2026-27-IT\Asztali\magassagosUristen\obj\Debug\net10.0\magassag.6B105E83.Up2Date

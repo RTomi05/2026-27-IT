@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mértékegység átváltó</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-lg border-0 rounded-5">
+                    <div class="card-body p-4">
+                        <h2 class="card-title text-center mb-4 text-primary fw-bold">Mértékegység átváltó</h2>
+                        
+                        <div class="mb-3">
+                            <label for="adat" class="form-label text-muted fs-6">
+                                Adj meg egy értéket és mértékegységet:
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" id="adat" placeholder="pl. 3 m, 50 cm, 2 ó">
+                                <button class="btn btn-primary px-4" onclick="atvaltas()">Átváltás</button>
+                            </div>
+                            <div class="form-text">Támogatott: m, dm, cm, mm, ó, p, mp</div>
+                            <div class="form-text" id="kiiras"></div>
+                        </div>
+                        <div id="eredmeny" class="alert alert-success mt-4 d-none" role="alert"></div>
+                        <div id="hiba" class="alert alert-danger mt-4 d-none" role="alert"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function atvaltas()
+        {
+            let adat = document.getElementById("adat").value.trim();
+            
+            let szamResz = "";
+            let egysegResz = "";
+
+            // Karakterenként végigmegyünk a beírt szövegen
+            for (let i = 0; i < adat.length; i++) {
+                let karakter = adat[i];
+
+                // Ha a karakter szám, pont vagy vessző, hozzáfűzzük a számhoz
+                if ((karakter >= '0' && karakter <= '9') || karakter === '.' || karakter === ',') {
+                    szamResz += karakter;
+                } 
+                // Ha nem szóköz, akkor az a mértékegység része lesz
+                else if (karakter !== ' ') {
+                    egysegResz += karakter;
+                }
+            }
+
+            let szam = parseFloat(szamResz.replace(',', '.'));
+            let egyseg = egysegResz.toLowerCase();
+
+            if (isNaN(szam)) {
+                console.log("Nem adtál meg érvényes számot!");
+                return;
+            }
+            if (egyseg === "m" || egyseg === "méter")
+            {
+                console.log("A megadott érték deciméterben: " + (szam * 10) + " dm");
+                console.log("A megadott érték centiméterben: " + (szam * 100) + " cm");
+                console.log("A megadott érték milliméterben: " + (szam * 1000) + " mm");
+                document.getElementById("kiiras").innerHTML = "A megadott érték deciméterben: " + (szam * 10) + " dm" + "<br>" + "A megadott érték centiméterben: " + (szam * 100) + " cm" + "<br>" + "A megadott érték milliméterben: " + (szam * 1000) + " mm";
+            }
+            else if (egyseg === "dm" || egyseg === "deciméter")
+            {
+                console.log("A megadott érték méterben: " + (szam / 10) + " m");
+                console.log("A megadott érték centiméterben: " + (szam * 10) + " cm");
+                console.log("A megadott érték milliméterben: " + (szam * 100) + " mm");
+                document.getElementById("kiiras").innerHTML = "A megadott érték méterben: " + (szam / 10) + " m" + "<br>" + "A megadott érték centiméterben: " + (szam * 10) + " cm" + "<br>" + "A megadott érték milliméterben: " + (szam * 100) + " mm";
+            }
+            else if (egyseg === "cm" || egyseg === "centiméter")
+            {
+                console.log("A megadott érték deciméterben: " + (szam / 10) + " dm");
+                console.log("A megadott érték méterben: " + (szam / 100) + " m");
+                console.log("A megadott érték milliméterben: " + (szam * 10) + " mm");
+                document.getElementById("kiiras").innerHTML = "A megadott érték deciméterben: " + (szam / 10) + " dm" + "<br>" + "A megadott érték méterben: " + (szam / 100) + " cm" + "<br>" + "A megadott érték milliméterben: " + (szam * 10) + " mm";
+            }
+            else if (egyseg === "mm" || egyseg === "milliméter")
+            {
+                console.log("A megadott érték méterben: " + (szam / 1000) + " m");
+                console.log("A megadott érték deciméterben: " + (szam / 100) + " dm");
+                console.log("A megadott érték centiméterben: " + (szam / 10) + " cm");
+                document.getElementById("kiiras").innerHTML = "A megadott érték méterben: " + (szam / 1000) + " m" + "<br>" + "A megadott érték centiméterben: " + (szam / 10) + " cm" + "<br>" + "A megadott érték milliméterben: " + (szam / 100) + " mm";
+            }
+            else if (egyseg === "ó" || egyseg === "óra") {
+                console.log("A megadott érték percben: " + (szam * 60) + " perc");
+                document.getElementById("kiiras").innerHTML = "A megadott érték percben: " + (szam * 60) + " perc" + "<br>" + "A megadott érték másodpercben: " + (szam * 3600) + " másodperc";                
+            }
+            else {
+                console.log("Ismeretlen mértékegység: " + egyseg);
+            }
+        }
+    </script>
+</body>
+</html>
