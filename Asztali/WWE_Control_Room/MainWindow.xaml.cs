@@ -51,7 +51,7 @@ namespace WWE_Control_Room
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             SetMenuFocus(MainMenuPosition.Box1_Calendar);
-            Mouse.OverrideCursor = Cursors.None;
+            //Mouse.OverrideCursor = Cursors.None;
             BgVideo.Play();
 
             PlayersList = LoadPlayersFromFile("roster.txt");
@@ -409,8 +409,18 @@ namespace WWE_Control_Room
             string p1Name = p1 != null ? p1.Name : "Player 1";
             string p2Name = p2 != null ? p2.Name : "Player 2";
 
+            if (p1 != null && p2 != null && p1.Name == p2.Name)
+            {
+                MatchText.Text = "HIBA!\nEgy birkózó nem küzdhet saját maga ellen!";
+                MatchDialog.Visibility = Visibility.Visible;
+                return;
+            }
+            else
+            {
             MatchText.Text = $"{eventType}\n\n{p1Name}   VS   {p2Name}";
             MatchDialog.Visibility = Visibility.Visible;
+            }
+
         }
 
         #endregion
@@ -461,10 +471,34 @@ namespace WWE_Control_Room
         {
             if (PlayerGrid.SelectedItem is Player selectedPlayer)
             {
-                if (targetPlayerSlot == 1) Player1Combo.SelectedItem = selectedPlayer;
-                else if (targetPlayerSlot == 2) Player2Combo.SelectedItem = selectedPlayer;
+                // 1. Ha a Piros saroknak (Player 1) választunk embert:
+                if (targetPlayerSlot == 1)
+                {
+                    var p2 = Player2Combo.SelectedItem as Player;
+                    // Ha a Kék sarokban ugyanez az ember van, nem engedjük a választást
+                    if (p2 != null && p2.Name == selectedPlayer.Name)
+                    {
+                        // Nem csinál semmit, vagy akár ki is csipoghat a rendszer
+                        System.Media.SystemSounds.Beep.Play();
+                        return; // Nem engedi bezárni a Rostert ezzel a választással
+                    }
+                    Player1Combo.SelectedItem = selectedPlayer;
+                }
+                // 2. Ha a Kék saroknak (Player 2) választunk embert:
+                else if (targetPlayerSlot == 2)
+                {
+                    var p1 = Player1Combo.SelectedItem as Player;
+                    // Ha a Piros sarokban ugyanez az ember van, nem engedjük
+                    if (p1 != null && p1.Name == selectedPlayer.Name)
+                    {
+                        System.Media.SystemSounds.Beep.Play();
+                        return;
+                    }
+                    Player2Combo.SelectedItem = selectedPlayer;
+                }
             }
 
+            // Ha érvényes volt a választás, bezárjuk a Rostert
             CloseRosterScreen();
         }
 
