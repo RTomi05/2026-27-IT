@@ -5,21 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WWE_Control_Room"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280"
+        Title="WWE Control Room" Height="720" Width="1280"
         PreviewKeyDown="Window_PreviewKeyDown"
         Loaded="Window_Loaded"
         Cursor="None">
-    <!-- Hozzáadva a Loaded esemény -->
 
     <Window.Resources>
+        <!-- TextBox Alapstílus a főmenü kártyáihoz -->
         <Style TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="5"/>
-
-            <!-- EGÉR LETILTÁSA: Figyelmen kívül hagyja az egérkattintásokat és a kurzort -->
             <Setter Property="IsHitTestVisible" Value="False"/>
-
             <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
             <Setter Property="RenderTransform">
                 <Setter.Value>
@@ -29,7 +25,6 @@
 
             <Style.Triggers>
                 <Trigger Property="IsKeyboardFocused" Value="True">
-                    <Setter Property="Background" Value="LightBlue"/>
                     <Setter Property="BorderBrush" Value="Orange"/>
                     <Setter Property="BorderThickness" Value="5"/>
                     <Setter Property="Panel.ZIndex" Value="1"/>
@@ -41,6 +36,109 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <!-- 1. MEZŐK ELTŰNÉSE ANIMÁCIÓ -->
+        <Storyboard x:Key="HideFieldsStoryboard">
+            <DoubleAnimation Storyboard.TargetName="FieldsScale" Storyboard.TargetProperty="ScaleX" To="0" Duration="0:0:0.35">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseIn" Amplitude="0.6"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="FieldsScale" Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0.35">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseIn" Amplitude="0.6"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="FieldsGrid" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25"/>
+        </Storyboard>
+
+        <!-- 2. TÁBLÁZAT MEGJELENÉSE ANIMÁCIÓ -->
+        <Storyboard x:Key="ShowTableStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TableScale" Storyboard.TargetProperty="ScaleX" From="0.5" To="1.0" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="TableScale" Storyboard.TargetProperty="ScaleY" From="0.5" To="1.0" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="TableViewGrid" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
+        </Storyboard>
+
+        <!-- 3. MEZŐK VISSZAHOZÁSA ANIMÁCIÓ (ESC-nél) -->
+        <Storyboard x:Key="ShowFieldsStoryboard">
+            <DoubleAnimation Storyboard.TargetName="FieldsScale" Storyboard.TargetProperty="ScaleX" From="0" To="1.0" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="FieldsScale" Storyboard.TargetProperty="ScaleY" From="0" To="1.0" Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="FieldsGrid" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
+        </Storyboard>
+
+        <!-- DATAGRID EGYEDI STÍLUSOK -->
+        <!-- Oszlopfejléc stílusa -->
+        <Style x:Key="CustomColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#888888"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="15,0,15,10"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#33FFFFFF"/>
+        </Style>
+
+        <!-- Cella stílusa -->
+        <Style x:Key="CustomCellStyle" TargetType="DataGridCell">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Background="Transparent" Padding="10,0">
+                            <ContentPresenter VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Sor stílusa (Kijelölési / Fókusz effekttel) -->
+        <Style x:Key="CustomRowStyle" TargetType="DataGridRow">
+            <Setter Property="Background" Value="#22222E"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridRow">
+                        <Border x:Name="RowBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="#44FFFFFF"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="5,8">
+                            <SelectiveScrollingGrid>
+                                <DataGridCellsPresenter/>
+                            </SelectiveScrollingGrid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Kijelölt sor (Arany szegély + izzás) -->
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="RowBorder" Property="Background" Value="#33FFD700"/>
+                                <Setter TargetName="RowBorder" Property="BorderBrush" Value="#FFD700"/>
+                                <Setter TargetName="RowBorder" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -48,17 +146,24 @@
             <ColumnDefinition Width="932*"/>
             <ColumnDefinition Width="349*"/>
         </Grid.ColumnDefinitions>
+
+        <!-- HÁTTÉRVIDEÓ -->
         <MediaElement x:Name="BgVideo"
                       Source="bgVideo.mp4" 
-                      LoadedBehavior="Play"
+                      LoadedBehavior="Manual"
                       UnloadedBehavior="Close"
                       Stretch="UniformToFill"
+                      MediaOpened="BgVideo_MediaOpened"
                       MediaEnded="BgVideo_MediaEnded"
                       Volume="0"
                       IsHitTestVisible="False"
                       Focusable="False" Grid.ColumnSpan="2"/>
 
-        <Grid Margin="10,10,10,10" Grid.ColumnSpan="2">
+        <!-- 2x2 MEZŐ HÁLÓZAT (KÉPEKKEL) -->
+        <Grid x:Name="FieldsGrid" RenderTransformOrigin="0.5,0.5" Margin="10,10,10,10" Grid.ColumnSpan="2">
+            <Grid.RenderTransform>
+                <ScaleTransform x:Name="FieldsScale" ScaleX="1" ScaleY="1"/>
+            </Grid.RenderTransform>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -68,13 +173,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Az első mezőnek adtunk egy x:Name="Box1" nevet, hogy hivatkozhassunk rá C#-ban -->
-            <TextBox x:Name="Box1" Grid.Row="0" Grid.Column="0" Margin="232,98,592,22" IsReadOnly="True" Text="Mező 1 (Bal Fent)" Grid.ColumnSpan="2">
+            <TextBox x:Name="Box1" Grid.Row="0" Grid.Column="0" Margin="232,98,592,22" IsReadOnly="True" Text="Calendar" Grid.ColumnSpan="2">
                 <TextBox.Background>
                     <ImageBrush ImageSource="Images/brave.jpg" Stretch="UniformToFill"/>
                 </TextBox.Background>
             </TextBox>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="108,98,108,22" IsReadOnly="True" Text="Mező 2 (Jobb Fent)">
+            <TextBox x:Name="Box2" Grid.Row="0" Grid.Column="1" Margin="108,98,108,22" IsReadOnly="True" Text="Roster" Grid.ColumnSpan="2">
                 <TextBox.Background>
                     <ImageBrush ImageSource="Images/brave.jpg" Stretch="UniformToFill"/>
                 </TextBox.Background>
@@ -89,6 +193,99 @@
                     <ImageBrush ImageSource="Images/brave.jpg" Stretch="UniformToFill"/>
                 </TextBox.Background>
             </TextBox>
+        </Grid>
+
+        <!-- DIZÁJNOS DATAGRID NÉZET -->
+        <Grid x:Name="TableViewGrid" Visibility="Collapsed" Grid.ColumnSpan="2"
+              RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RenderTransform>
+                <ScaleTransform x:Name="TableScale" ScaleX="1" ScaleY="1"/>
+            </Grid.RenderTransform>
+
+            <Border Background="#F0121218" BorderBrush="#FFD700" BorderThickness="2" CornerRadius="16" Width="760" Padding="35">
+                <Border.Effect>
+                    <DropShadowEffect Color="#FFD700" BlurRadius="25" ShadowDepth="0" Opacity="0.4"/>
+                </Border.Effect>
+
+                <StackPanel>
+                    <TextBlock Text="RÉSZTVEVŐK ÉS STATISZTIKÁK" FontSize="24" FontWeight="Bold" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                    <!-- MEGFELELŐEN STÍLUSOZOTT DATAGRID -->
+                    <DataGrid x:Name="PlayerGrid"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              SelectionUnit="FullRow"
+                              GridLinesVisibility="None"
+                              Background="Transparent"
+                              RowBackground="Transparent"
+                              BorderThickness="0"
+                              HeadersVisibility="Column"
+                              RowStyle="{StaticResource CustomRowStyle}"
+                              CellStyle="{StaticResource CustomCellStyle}"
+                              ColumnHeaderStyle="{StaticResource CustomColumnHeaderStyle}"
+                              Focusable="True"
+                              Margin="0,0,0,15">
+                        <DataGrid.Columns>
+                            <!-- Rang Oszlop -->
+                            <DataGridTextColumn Header="RANG" Binding="{Binding Rank}" Width="80">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="#FFD700"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <!-- Név Oszlop -->
+                            <DataGridTextColumn Header="NÉV" Binding="{Binding Name}" Width="*">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="FontSize" Value="17"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <!-- Pontszám Oszlop (Dizájnos jelvénnyel) -->
+                            <DataGridTemplateColumn Header="ÉRTÉKELÉS" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#FFD700" CornerRadius="6" Padding="12,5" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Score}" Foreground="Black" FontWeight="Bold" FontSize="14"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <TextBlock Text="[ W / S vagy Nyilak ] Kijelölés   |   [ Enter ] Kiválasztás   |   [ ESC ] Vissza"
+                               Foreground="#AAAAAA" FontSize="13" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- KILÉPŐ ABLAK -->
+        <Grid x:Name="ExitDialog" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" Panel.ZIndex="1000" Background="#CC000000">
+            <Border Background="#222222" BorderBrush="Orange" BorderThickness="3" CornerRadius="12" Width="500" Height="220" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Ki szeretnél lépni a játékból?" FontSize="22" Foreground="White" FontWeight="Bold" Margin="0,0,0,25" TextAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Border Background="#333333" BorderBrush="LightGreen" BorderThickness="2" CornerRadius="6" Padding="15,10" Margin="10">
+                            <TextBlock Text="[ Enter ] Igen" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                        </Border>
+                        <Border Background="#333333" BorderBrush="Red" BorderThickness="2" CornerRadius="6" Padding="15,10" Margin="10">
+                            <TextBlock Text="[ Esc ] Nem" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
         </Grid>
     </Grid>
 </Window>
