@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 
 namespace WWE_Control_Room
 {
-    // Adatmodell az emberekhez / wrestlingerekhez
     public class Player
     {
         public string Rank { get; set; }
@@ -14,19 +15,33 @@ namespace WWE_Control_Room
         public string Score { get; set; }
     }
 
+    public enum MainMenuPosition
+    {
+        Box1_Calendar, // Bal felső
+        Box2_Roster,   // Jobb felső
+        Box3_BookShow, // Bal alsó
+        Box4_Options   // Jobb alsó
+    }
+
+    public enum BookShowControl
+    {
+        EventType,
+        Player1,
+        Player2,
+        BookButton
+    }
+
     public partial class MainWindow : Window
     {
         private bool isAnimating = false;
 
-        // Lista a táblázat adatainak
-        public List<Player> PlayersList { get; set; } = new List<Player>
-        {
-            new Player { Rank = "#1", Name = "Roman Reigns", Score = "98 PTS" },
-            new Player { Rank = "#2", Name = "Cody Rhodes", Score = "96 PTS" },
-            new Player { Rank = "#3", Name = "Seth Rollins", Score = "93 PTS" },
-            new Player { Rank = "#4", Name = "CM Punk", Score = "93 PTS" },
-            new Player { Rank = "#5", Name = "Rhea Ripley", Score = "93 PTS" }
-        };
+        private MainMenuPosition currentMenuPos = MainMenuPosition.Box1_Calendar;
+        private BookShowControl currentBookControl = BookShowControl.EventType;
+
+        // 0 = Menüből nyitott Roster, 1 = Red Corner kiválasztás, 2 = Blue Corner kiválasztás
+        private int targetPlayerSlot = 0;
+
+        public List<Player> PlayersList { get; set; } = new List<Player>();
 
         public MainWindow()
         {
@@ -35,99 +50,165 @@ namespace WWE_Control_Room
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Box1.Focus();
+            SetMenuFocus(MainMenuPosition.Box1_Calendar);
             Mouse.OverrideCursor = Cursors.None;
             BgVideo.Play();
 
-            // DataGrid feltöltése az adatokkal
+            PlayersList = LoadPlayersFromFile("roster.txt");
             PlayerGrid.ItemsSource = PlayersList;
+            Player1Combo.ItemsSource = PlayersList;
+            Player2Combo.ItemsSource = PlayersList;
+
+            if (PlayersList.Count >= 2)
+            {
+                Player1Combo.SelectedIndex = 0;
+                Player2Combo.SelectedIndex = 1;
+            }
         }
 
-        private void BgVideo_MediaOpened(object sender, RoutedEventArgs e)
+        #region Focus Helpers
+
+        private void SetMenuFocus(MainMenuPosition pos)
+        {
+            currentMenuPos = pos;
+            switch (pos)
+            {
+                case MainMenuPosition.Box1_Calendar: Box1.Focus(); break;
+                case MainMenuPosition.Box2_Roster: Box2.Focus(); break;
+                case MainMenuPosition.Box3_BookShow: Box3.Focus(); break;
+                case MainMenuPosition.Box4_Options: Box4.Focus(); break;
+            }
+        }
+
+        private void SetBookShowFocus(BookShowControl control)
+        {
+            currentBookControl = control;
+            switch (control)
+            {
+                case BookShowControl.EventType: EventTypeCombo.Focus(); break;
+                case BookShowControl.Player1: Player1Combo.Focus(); break;
+                case BookShowControl.Player2: Player2Combo.Focus(); break;
+                case BookShowControl.BookButton: BookButton.Focus(); break;
+            }
+        }
+
+        #endregion
+
+        #region File & Video Logic
+
+        private List<Player> LoadPlayersFromFile(string filePath)
+        {
+            var list = new List<Player>();
+            if (!File.Exists(filePath)) return list;
+
+            try
+            {
+                foreach (var line in File.ReadAllLines(filePath))
+                {
+                    if (string.IsNullOrWhiteSpace(line) || line.StartsWith("//")) continue;
+                    var parts = line.Split(';');
+                    if (parts.Length >= 3)
+                    {
+                        list.Add(new Player
+                        {
+                            Rank = parts[0].Trim(),
+                            Name = parts[1].Trim(),
+                            Score = parts[2].Trim()
+                        });
+                    }
+                }
+            }
+            catch { }
+            return list;
+        }
+
+        private void BgVideo_MediaOpened(object sender, RoutedEventArgs e) => ResetVideo();
+        private void BgVideo_MediaEnded(object sender, RoutedEventArgs e) => ResetVideo();
+
+        private void ResetVideo()
         {
             BgVideo.Position = TimeSpan.FromSeconds(3);
             BgVideo.Play();
         }
 
-        private void BgVideo_MediaEnded(object sender, RoutedEventArgs e)
+        #endregion
+
+        #region Safe Animation Helper
+
+        private void PlayStoryboard(string resourceName, Action onCompleted)
         {
-            BgVideo.Position = TimeSpan.FromSeconds(3);
-            BgVideo.Play();
+            isAnimating = true;
+            var anim = (Storyboard)FindResource(resourceName);
+
+            EventHandler handler = null;
+            handler = (s, e) =>
+            {
+                anim.Completed -= handler;
+                isAnimating = false;
+                onCompleted?.Invoke();
+            };
+
+            anim.Completed += handler;
+            anim.Begin();
         }
+
+        #endregion
+
+        #region Central Key Router
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (isAnimating) return;
 
-            // 1. KILÉPŐ ABLAK NYITVA
+            // 1. Kilépő dialógus
             if (ExitDialog.Visibility == Visibility.Visible)
             {
-                if (e.Key == Key.Enter)
-                {
-                    Application.Current.Shutdown();
-                    e.Handled = true;
-                }
-                else if (e.Key == Key.Escape)
-                {
-                    ExitDialog.Visibility = Visibility.Collapsed;
-                    e.Handled = true;
-                }
+                HandleExitDialogKeys(e);
                 return;
             }
 
-            // 2. HA A DATAGRID TÁBLÁZAT LÁTSZIK
+            // 2. Book A Show képernyő
+            if (BookShowGrid.Visibility == Visibility.Visible)
+            {
+                HandleBookShowKeys(e);
+                return;
+            }
+
+            // 3. Roster képernyő (DataGrid)
             if (TableViewGrid.Visibility == Visibility.Visible)
             {
-                // ESC -> Vissza a főmenübe
-                if (e.Key == Key.Escape)
-                {
-                    isAnimating = true;
-                    TableViewGrid.Visibility = Visibility.Collapsed;
-                    FieldsGrid.Visibility = Visibility.Visible;
-
-                    var showFieldsAnim = (Storyboard)FindResource("ShowFieldsStoryboard");
-                    showFieldsAnim.Completed += (s, ev) =>
-                    {
-                        Box1.Focus();
-                        isAnimating = false;
-                    };
-                    showFieldsAnim.Begin();
-
-                    e.Handled = true;
-                    return;
-                }
-
-                // ENTER -> Kiválasztott ember feldolgozása
-                if (e.Key == Key.Enter)
-                {
-                    if (PlayerGrid.SelectedItem is Player selectedPlayer)
-                    {
-                        MessageBox.Show($"Kiválasztva: {selectedPlayer.Name} (Rang: {selectedPlayer.Rank}, Értékelés: {selectedPlayer.Score})");
-                    }
-                    e.Handled = true;
-                    return;
-                }
-
-                // W és S gombok kezelése a DataGrid léptetéséhez (a nyilak alapból működnek)
-                if (e.Key == Key.W)
-                {
-                    if (PlayerGrid.SelectedIndex > 0)
-                        PlayerGrid.SelectedIndex--;
-                    e.Handled = true;
-                    return;
-                }
-                else if (e.Key == Key.S)
-                {
-                    if (PlayerGrid.SelectedIndex < PlayerGrid.Items.Count - 1)
-                        PlayerGrid.SelectedIndex++;
-                    e.Handled = true;
-                    return;
-                }
-
+                HandleRosterKeys(e);
                 return;
             }
 
-            // 3. MAIN MENU ESC (Kilépő ablak)
+            // 4. Főmenü képernyő (2x2 Rács)
+            if (FieldsGrid.Visibility == Visibility.Visible)
+            {
+                HandleMainMenuKeys(e);
+                return;
+            }
+        }
+
+        #endregion
+
+        #region Screen Key Handlers
+
+        private void HandleExitDialogKeys(KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Application.Current.Shutdown();
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Escape)
+            {
+                ExitDialog.Visibility = Visibility.Collapsed;
+                e.Handled = true;
+            }
+        }
+
+        private void HandleMainMenuKeys(KeyEventArgs e)
+        {
             if (e.Key == Key.Escape)
             {
                 ExitDialog.Visibility = Visibility.Visible;
@@ -135,55 +216,306 @@ namespace WWE_Control_Room
                 return;
             }
 
-            // 4. MAIN MENU ENTER A MEZŐ 1-EN
-            if (e.Key == Key.Enter && FieldsGrid.Visibility == Visibility.Visible)
+            switch (e.Key)
             {
-                if (Keyboard.FocusedElement == Box2)
+                case Key.W:
+                case Key.Up:
+                    if (currentMenuPos == MainMenuPosition.Box3_BookShow) SetMenuFocus(MainMenuPosition.Box1_Calendar);
+                    else if (currentMenuPos == MainMenuPosition.Box4_Options) SetMenuFocus(MainMenuPosition.Box2_Roster);
+                    e.Handled = true;
+                    return;
+
+                case Key.S:
+                case Key.Down:
+                    if (currentMenuPos == MainMenuPosition.Box1_Calendar) SetMenuFocus(MainMenuPosition.Box3_BookShow);
+                    else if (currentMenuPos == MainMenuPosition.Box2_Roster) SetMenuFocus(MainMenuPosition.Box4_Options);
+                    e.Handled = true;
+                    return;
+
+                case Key.A:
+                case Key.Left:
+                    if (currentMenuPos == MainMenuPosition.Box2_Roster) SetMenuFocus(MainMenuPosition.Box1_Calendar);
+                    else if (currentMenuPos == MainMenuPosition.Box4_Options) SetMenuFocus(MainMenuPosition.Box3_BookShow);
+                    e.Handled = true;
+                    return;
+
+                case Key.D:
+                case Key.Right:
+                    if (currentMenuPos == MainMenuPosition.Box1_Calendar) SetMenuFocus(MainMenuPosition.Box2_Roster);
+                    else if (currentMenuPos == MainMenuPosition.Box3_BookShow) SetMenuFocus(MainMenuPosition.Box4_Options);
+                    e.Handled = true;
+                    return;
+
+                case Key.Enter:
+                    if (currentMenuPos == MainMenuPosition.Box2_Roster) OpenRosterScreen();
+                    else if (currentMenuPos == MainMenuPosition.Box3_BookShow) OpenBookShowScreen();
+                    e.Handled = true;
+                    return;
+            }
+        }
+
+        private void HandleRosterKeys(KeyEventArgs e)
+        {
+            // Kizárólag ESC-re lép vissza a főmenübe (vagy a Book A Show-ba)
+            if (e.Key == Key.Escape)
+            {
+                CloseRosterScreen();
+                e.Handled = true;
+                return;
+            }
+
+            // ENTER -> Csak akkor hagyja jóvá a kiválasztást és lép vissza, ha a Book A Show-ból nyitottuk meg (targetPlayerSlot != 0)
+            if (e.Key == Key.Enter)
+            {
+                if (targetPlayerSlot != 0)
                 {
-                    isAnimating = true;
+                    ConfirmRosterSelection();
+                }
+                e.Handled = true;
+                return;
+            }
 
-                    var hideAnimation = (Storyboard)FindResource("HideFieldsStoryboard");
-                    hideAnimation.Completed += (s, ev) =>
-                    {
-                        FieldsGrid.Visibility = Visibility.Collapsed;
-                        TableViewGrid.Visibility = Visibility.Visible;
+            // NAVIGÁCIÓ (W / S / Nyilak)
+            if (e.Key == Key.W || e.Key == Key.Up)
+            {
+                if (PlayerGrid.SelectedIndex > 0)
+                {
+                    PlayerGrid.SelectedIndex--;
+                    PlayerGrid.ScrollIntoView(PlayerGrid.SelectedItem);
+                }
+                e.Handled = true;
+            }
+            else if (e.Key == Key.S || e.Key == Key.Down)
+            {
+                if (PlayerGrid.SelectedIndex < PlayerGrid.Items.Count - 1)
+                {
+                    PlayerGrid.SelectedIndex++;
+                    PlayerGrid.ScrollIntoView(PlayerGrid.SelectedItem);
+                }
+                e.Handled = true;
+            }
+        }
 
-                        var showTableAnim = (Storyboard)FindResource("ShowTableStoryboard");
-                        showTableAnim.Completed += (s2, ev2) =>
-                        {
-                            isAnimating = false;
+        private void HandleBookShowKeys(KeyEventArgs e)
+        {
+            // Ha a meccs kiíró ablak van nyitva
+            if (MatchDialog.Visibility == Visibility.Visible)
+            {
+                if (e.Key == Key.Enter || e.Key == Key.Escape)
+                {
+                    MatchDialog.Visibility = Visibility.Collapsed;
+                    e.Handled = true;
+                }
+                return;
+            }
 
-                            // Fókusz a DataGrid-re, és kijelöljük az első elemet
-                            PlayerGrid.Focus();
-                            PlayerGrid.SelectedIndex = 0;
-                        };
-                        showTableAnim.Begin();
-                    };
+            if (e.Key == Key.Escape)
+            {
+                CloseBookShowScreen();
+                e.Handled = true;
+                return;
+            }
 
-                    hideAnimation.Begin();
+            // ENTER megnyomása a kiválasztott vezérlőn
+            if (e.Key == Key.Enter)
+            {
+                if (currentBookControl == BookShowControl.Player1)
+                {
+                    OpenRosterForPlayer(1);
+                    e.Handled = true;
+                    return;
+                }
+                else if (currentBookControl == BookShowControl.Player2)
+                {
+                    OpenRosterForPlayer(2);
+                    e.Handled = true;
+                    return;
+                }
+                else if (currentBookControl == BookShowControl.BookButton)
+                {
+                    ExecuteBookMatch();
                     e.Handled = true;
                     return;
                 }
             }
 
-            // 5. WASD NAVIGÁCIÓ A FŐMENÜ MEZŐI KÖZÖTT
-            FocusNavigationDirection? direction = e.Key switch
+            // NAVIGÁCIÓ (WASD / NYILAK)
+            switch (e.Key)
             {
-                Key.W => FocusNavigationDirection.Up,
-                Key.S => FocusNavigationDirection.Down,
-                Key.A => FocusNavigationDirection.Left,
-                Key.D => FocusNavigationDirection.Right,
-                _ => null
-            };
-
-            if (direction.HasValue)
-            {
-                if (Keyboard.FocusedElement is UIElement currentElement)
-                {
-                    currentElement.MoveFocus(new TraversalRequest(direction.Value));
+                case Key.W:
+                case Key.Up:
+                    if (currentBookControl == BookShowControl.Player1 || currentBookControl == BookShowControl.Player2)
+                        SetBookShowFocus(BookShowControl.EventType);
+                    else if (currentBookControl == BookShowControl.BookButton)
+                        SetBookShowFocus(BookShowControl.Player1);
                     e.Handled = true;
-                }
+                    break;
+
+                case Key.S:
+                case Key.Down:
+                    if (currentBookControl == BookShowControl.EventType)
+                        SetBookShowFocus(BookShowControl.Player1);
+                    else if (currentBookControl == BookShowControl.Player1 || currentBookControl == BookShowControl.Player2)
+                        SetBookShowFocus(BookShowControl.BookButton);
+                    e.Handled = true;
+                    break;
+
+                case Key.A:
+                case Key.Left:
+                    if (currentBookControl == BookShowControl.EventType)
+                    {
+                        if (EventTypeCombo.SelectedIndex > 0) EventTypeCombo.SelectedIndex--;
+                    }
+                    else if (currentBookControl == BookShowControl.Player2)
+                    {
+                        SetBookShowFocus(BookShowControl.Player1);
+                    }
+                    else if (currentBookControl == BookShowControl.Player1)
+                    {
+                        if (Player1Combo.SelectedIndex > 0) Player1Combo.SelectedIndex--;
+                    }
+                    e.Handled = true;
+                    break;
+
+                case Key.D:
+                case Key.Right:
+                    if (currentBookControl == BookShowControl.EventType)
+                    {
+                        if (EventTypeCombo.SelectedIndex < EventTypeCombo.Items.Count - 1) EventTypeCombo.SelectedIndex++;
+                    }
+                    else if (currentBookControl == BookShowControl.Player1)
+                    {
+                        SetBookShowFocus(BookShowControl.Player2);
+                    }
+                    else if (currentBookControl == BookShowControl.Player2)
+                    {
+                        if (Player2Combo.SelectedIndex < Player2Combo.Items.Count - 1) Player2Combo.SelectedIndex++;
+                    }
+                    e.Handled = true;
+                    break;
             }
         }
+
+        #endregion
+
+        #region Match Logic
+
+        private void ExecuteBookMatch()
+        {
+            var eventType = (EventTypeCombo.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Match";
+            var p1 = Player1Combo.SelectedItem as Player;
+            var p2 = Player2Combo.SelectedItem as Player;
+
+            string p1Name = p1 != null ? p1.Name : "Player 1";
+            string p2Name = p2 != null ? p2.Name : "Player 2";
+
+            MatchText.Text = $"{eventType}\n\n{p1Name}   VS   {p2Name}";
+            MatchDialog.Visibility = Visibility.Visible;
+        }
+
+        #endregion
+
+        #region Screen Transitions & Roster Selection
+
+        private void OpenRosterScreen()
+        {
+            targetPlayerSlot = 0; // Főmenüből nyitva
+            PlayStoryboard("HideFieldsStoryboard", () =>
+            {
+                FieldsGrid.Visibility = Visibility.Collapsed;
+                TableViewGrid.Visibility = Visibility.Visible;
+
+                PlayStoryboard("ShowTableStoryboard", () =>
+                {
+                    PlayerGrid.Focus();
+                    if (PlayerGrid.Items.Count > 0)
+                    {
+                        PlayerGrid.SelectedIndex = 0;
+                        PlayerGrid.ScrollIntoView(PlayerGrid.SelectedItem);
+                    }
+                });
+            });
+        }
+
+        private void OpenRosterForPlayer(int playerSlot)
+        {
+            targetPlayerSlot = playerSlot; // 1 = Red Corner, 2 = Blue Corner
+            BookShowGrid.Visibility = Visibility.Collapsed;
+            TableViewGrid.Visibility = Visibility.Visible;
+
+            PlayStoryboard("ShowTableStoryboard", () =>
+            {
+                PlayerGrid.Focus();
+                if (PlayerGrid.Items.Count > 0)
+                {
+                    var currentP = playerSlot == 1 ? Player1Combo.SelectedItem : Player2Combo.SelectedItem;
+                    if (currentP != null) PlayerGrid.SelectedItem = currentP;
+                    else PlayerGrid.SelectedIndex = 0;
+
+                    PlayerGrid.ScrollIntoView(PlayerGrid.SelectedItem);
+                }
+            });
+        }
+
+        private void ConfirmRosterSelection()
+        {
+            if (PlayerGrid.SelectedItem is Player selectedPlayer)
+            {
+                if (targetPlayerSlot == 1) Player1Combo.SelectedItem = selectedPlayer;
+                else if (targetPlayerSlot == 2) Player2Combo.SelectedItem = selectedPlayer;
+            }
+
+            CloseRosterScreen();
+        }
+
+        private void CloseRosterScreen()
+        {
+            if (targetPlayerSlot > 0)
+            {
+                // Visszatérés a Book A Show képernyőre
+                int returningSlot = targetPlayerSlot;
+                targetPlayerSlot = 0;
+
+                TableViewGrid.Visibility = Visibility.Collapsed;
+                BookShowGrid.Visibility = Visibility.Visible;
+
+                if (returningSlot == 1) SetBookShowFocus(BookShowControl.Player1);
+                else if (returningSlot == 2) SetBookShowFocus(BookShowControl.Player2);
+            }
+            else
+            {
+                // Visszatérés a Főmenübe
+                TableViewGrid.Visibility = Visibility.Collapsed;
+                FieldsGrid.Visibility = Visibility.Visible;
+
+                PlayStoryboard("ShowFieldsStoryboard", () =>
+                {
+                    SetMenuFocus(MainMenuPosition.Box2_Roster);
+                });
+            }
+        }
+
+        private void OpenBookShowScreen()
+        {
+            PlayStoryboard("HideFieldsStoryboard", () =>
+            {
+                FieldsGrid.Visibility = Visibility.Collapsed;
+                BookShowGrid.Visibility = Visibility.Visible;
+                SetBookShowFocus(BookShowControl.EventType);
+            });
+        }
+
+        private void CloseBookShowScreen()
+        {
+            BookShowGrid.Visibility = Visibility.Collapsed;
+            FieldsGrid.Visibility = Visibility.Visible;
+
+            PlayStoryboard("ShowFieldsStoryboard", () =>
+            {
+                SetMenuFocus(MainMenuPosition.Box3_BookShow);
+            });
+        }
+
+        #endregion
     }
 }

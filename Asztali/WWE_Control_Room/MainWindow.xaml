@@ -8,36 +8,119 @@
         Title="WWE Control Room" Height="720" Width="1280"
         PreviewKeyDown="Window_PreviewKeyDown"
         Loaded="Window_Loaded"
-        Cursor="None">
+        Cursor="None"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True">
 
     <Window.Resources>
-        <!-- TextBox Alapstílus a főmenü kártyáihoz -->
-        <Style TargetType="TextBox">
-            <Setter Property="BorderBrush" Value="Gray"/>
-            <Setter Property="BorderThickness" Value="5"/>
+        <!-- FŐMENÜ KÁRTYÁK EGYEDI STÍLUSA ÉS ANIMÁCIÓI -->
+        <Style x:Key="MenuCardStyle" TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#44FFFFFF"/>
+            <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="IsHitTestVisible" Value="False"/>
-            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-            <Setter Property="RenderTransform">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Oswald"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+
+            <Setter Property="Template">
                 <Setter.Value>
-                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid x:Name="CardGrid" RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform x:Name="CardScale" ScaleX="1.0" ScaleY="1.0"/>
+                            </Grid.RenderTransform>
+
+                            <Border x:Name="GlowBorder" CornerRadius="14" Background="Black"/>
+
+                            <Border x:Name="OuterBorder"
+                                    CornerRadius="14"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    ClipToBounds="True">
+                                <Grid>
+                                    <Rectangle>
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#20000000" Offset="0.0"/>
+                                                <GradientStop Color="#80000000" Offset="0.5"/>
+                                                <GradientStop Color="#E6000000" Offset="1.0"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+
+                                    <Border x:Name="NamePlate"
+                                            VerticalAlignment="Bottom"
+                                            Background="#CC0B0E14"
+                                            BorderBrush="#88FFD700"
+                                            BorderThickness="0,2,0,0"
+                                            Padding="10,12">
+
+                                        <TextBlock Text="{TemplateBinding Text}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   FontWeight="{TemplateBinding FontWeight}"
+                                                   FontFamily="{TemplateBinding FontFamily}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   TextTrimming="CharacterEllipsis">
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect Color="Black" BlurRadius="6" ShadowDepth="2" Opacity="1"/>
+                                            </TextBlock.Effect>
+                                        </TextBlock>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleX" To="1.05" Duration="0:0:0.2">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuadraticEase EasingMode="EaseOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleY" To="1.05" Duration="0:0:0.2">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuadraticEase EasingMode="EaseOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleX" To="1.0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleY" To="1.0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                                <Setter TargetName="OuterBorder" Property="BorderBrush" Value="#FFD700"/>
+                                <Setter TargetName="OuterBorder" Property="BorderThickness" Value="4"/>
+                                <Setter TargetName="NamePlate" Property="Background" Value="#F0000000"/>
+                                <Setter TargetName="NamePlate" Property="BorderBrush" Value="#FFD700"/>
+                                <Setter TargetName="GlowBorder" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#FFD700" BlurRadius="35" ShadowDepth="0" Opacity="1"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
-            <Style.Triggers>
-                <Trigger Property="IsKeyboardFocused" Value="True">
-                    <Setter Property="BorderBrush" Value="Orange"/>
-                    <Setter Property="BorderThickness" Value="5"/>
-                    <Setter Property="Panel.ZIndex" Value="1"/>
-                    <Setter Property="RenderTransform">
-                        <Setter.Value>
-                            <ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
-        <!-- 1. MEZŐK ELTŰNÉSE ANIMÁCIÓ -->
+        <!-- ANIMÁCIÓK -->
         <Storyboard x:Key="HideFieldsStoryboard">
             <DoubleAnimation Storyboard.TargetName="FieldsScale" Storyboard.TargetProperty="ScaleX" To="0" Duration="0:0:0.35">
                 <DoubleAnimation.EasingFunction>
@@ -52,7 +135,6 @@
             <DoubleAnimation Storyboard.TargetName="FieldsGrid" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25"/>
         </Storyboard>
 
-        <!-- 2. TÁBLÁZAT MEGJELENÉSE ANIMÁCIÓ -->
         <Storyboard x:Key="ShowTableStoryboard">
             <DoubleAnimation Storyboard.TargetName="TableScale" Storyboard.TargetProperty="ScaleX" From="0.5" To="1.0" Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
@@ -67,7 +149,6 @@
             <DoubleAnimation Storyboard.TargetName="TableViewGrid" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
         </Storyboard>
 
-        <!-- 3. MEZŐK VISSZAHOZÁSA ANIMÁCIÓ (ESC-nél) -->
         <Storyboard x:Key="ShowFieldsStoryboard">
             <DoubleAnimation Storyboard.TargetName="FieldsScale" Storyboard.TargetProperty="ScaleX" From="0" To="1.0" Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
@@ -82,8 +163,7 @@
             <DoubleAnimation Storyboard.TargetName="FieldsGrid" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
         </Storyboard>
 
-        <!-- DATAGRID EGYEDI STÍLUSOK -->
-        <!-- Oszlopfejléc stílusa -->
+        <!-- DATAGRID STÍLUSOK -->
         <Style x:Key="CustomColumnHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#888888"/>
@@ -94,7 +174,6 @@
             <Setter Property="BorderBrush" Value="#33FFFFFF"/>
         </Style>
 
-        <!-- Cella stílusa -->
         <Style x:Key="CustomCellStyle" TargetType="DataGridCell">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -109,7 +188,6 @@
             </Setter>
         </Style>
 
-        <!-- Sor stílusa (Kijelölési / Fókusz effekttel) -->
         <Style x:Key="CustomRowStyle" TargetType="DataGridRow">
             <Setter Property="Background" Value="#22222E"/>
             <Setter Property="Margin" Value="0,4"/>
@@ -128,7 +206,6 @@
                             </SelectiveScrollingGrid>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <!-- Kijelölt sor (Arany szegély + izzás) -->
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter TargetName="RowBorder" Property="Background" Value="#33FFD700"/>
                                 <Setter TargetName="RowBorder" Property="BorderBrush" Value="#FFD700"/>
@@ -142,11 +219,6 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="932*"/>
-            <ColumnDefinition Width="349*"/>
-        </Grid.ColumnDefinitions>
-
         <!-- HÁTTÉRVIDEÓ -->
         <MediaElement x:Name="BgVideo"
                       Source="bgVideo.mp4" 
@@ -157,10 +229,10 @@
                       MediaEnded="BgVideo_MediaEnded"
                       Volume="0"
                       IsHitTestVisible="False"
-                      Focusable="False" Grid.ColumnSpan="2"/>
+                      Focusable="False"/>
 
-        <!-- 2x2 MEZŐ HÁLÓZAT (KÉPEKKEL) -->
-        <Grid x:Name="FieldsGrid" RenderTransformOrigin="0.5,0.5" Margin="10,10,10,10" Grid.ColumnSpan="2">
+        <!-- 2x2 MEZŐ HÁLÓZAT (FŐMENÜ) -->
+        <Grid x:Name="FieldsGrid" RenderTransformOrigin="0.5,0.5" Margin="40">
             <Grid.RenderTransform>
                 <ScaleTransform x:Name="FieldsScale" ScaleX="1" ScaleY="1"/>
             </Grid.RenderTransform>
@@ -173,36 +245,38 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="Box1" Grid.Row="0" Grid.Column="0" Margin="232,98,592,22" IsReadOnly="True" Text="Calendar" Grid.ColumnSpan="2">
+            <TextBox x:Name="Box1" Grid.Row="0" Grid.Column="0" Style="{StaticResource MenuCardStyle}" Margin="15" IsReadOnly="True" Text="CALENDAR">
                 <TextBox.Background>
                     <ImageBrush ImageSource="Images/brave.jpg" Stretch="UniformToFill"/>
                 </TextBox.Background>
             </TextBox>
-            <TextBox x:Name="Box2" Grid.Row="0" Grid.Column="1" Margin="108,98,108,22" IsReadOnly="True" Text="Roster" Grid.ColumnSpan="2">
+
+            <TextBox x:Name="Box2" Grid.Row="0" Grid.Column="1" Style="{StaticResource MenuCardStyle}" Margin="15" IsReadOnly="True" Text="ROSTER">
                 <TextBox.Background>
                     <ImageBrush ImageSource="Images/brave.jpg" Stretch="UniformToFill"/>
                 </TextBox.Background>
             </TextBox>
-            <TextBox Grid.Row="1" Grid.Column="0" Margin="232,23,592,107" IsReadOnly="True" Text="Mező 3 (Bal Lent)" Grid.ColumnSpan="2">
+
+            <TextBox x:Name="Box3" Grid.Row="1" Grid.Column="0" Style="{StaticResource MenuCardStyle}" Margin="15" IsReadOnly="True" Text="BOOK A SHOW!">
                 <TextBox.Background>
                     <ImageBrush ImageSource="Images/brave.jpg" Stretch="UniformToFill"/>
                 </TextBox.Background>
             </TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="107,23,108,107" IsReadOnly="True" Text="Mező 4 (Jobb Lent)">
+
+            <TextBox x:Name="Box4" Grid.Row="1" Grid.Column="1" Style="{StaticResource MenuCardStyle}" Margin="15" IsReadOnly="True" Text="OPTIONS">
                 <TextBox.Background>
                     <ImageBrush ImageSource="Images/brave.jpg" Stretch="UniformToFill"/>
                 </TextBox.Background>
             </TextBox>
         </Grid>
 
-        <!-- DIZÁJNOS DATAGRID NÉZET -->
-        <Grid x:Name="TableViewGrid" Visibility="Collapsed" Grid.ColumnSpan="2"
-              RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <!-- DATAGRID (ROSTER) NÉZET -->
+        <Grid x:Name="TableViewGrid" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RenderTransform>
                 <ScaleTransform x:Name="TableScale" ScaleX="1" ScaleY="1"/>
             </Grid.RenderTransform>
 
-            <Border Background="#F0121218" BorderBrush="#FFD700" BorderThickness="2" CornerRadius="16" Width="760" Padding="35">
+            <Border Background="#F0121218" BorderBrush="#FFD700" BorderThickness="2" CornerRadius="16" Width="800" Padding="30">
                 <Border.Effect>
                     <DropShadowEffect Color="#FFD700" BlurRadius="25" ShadowDepth="0" Opacity="0.4"/>
                 </Border.Effect>
@@ -210,8 +284,10 @@
                 <StackPanel>
                     <TextBlock Text="RÉSZTVEVŐK ÉS STATISZTIKÁK" FontSize="24" FontWeight="Bold" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-                    <!-- MEGFELELŐEN STÍLUSOZOTT DATAGRID -->
                     <DataGrid x:Name="PlayerGrid"
+                              Height="420"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.CanContentScroll="True"
                               AutoGenerateColumns="False"
                               CanUserAddRows="False"
                               IsReadOnly="True"
@@ -228,8 +304,7 @@
                               Focusable="True"
                               Margin="0,0,0,15">
                         <DataGrid.Columns>
-                            <!-- Rang Oszlop -->
-                            <DataGridTextColumn Header="RANG" Binding="{Binding Rank}" Width="80">
+                            <DataGridTextColumn Header="RANG" Binding="{Binding Rank}" Width="100">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Foreground" Value="#FFD700"/>
@@ -240,7 +315,6 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
-                            <!-- Név Oszlop -->
                             <DataGridTextColumn Header="NÉV" Binding="{Binding Name}" Width="*">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
@@ -252,8 +326,7 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
-                            <!-- Pontszám Oszlop (Dizájnos jelvénnyel) -->
-                            <DataGridTemplateColumn Header="ÉRTÉKELÉS" Width="150">
+                            <DataGridTemplateColumn Header="ÉRTÉKELÉS" Width="160">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Border Background="#FFD700" CornerRadius="6" Padding="12,5" HorizontalAlignment="Center">
@@ -271,8 +344,135 @@
             </Border>
         </Grid>
 
+        <!-- BOOK A SHOW NÉZET -->
+        <Grid x:Name="BookShowGrid" Visibility="Collapsed">
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="#E60A0A0E" BorderBrush="#FF0033" BorderThickness="1.5"
+                    CornerRadius="16" Padding="40,30" Width="820">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="40" Color="#000000" Opacity="0.9" ShadowDepth="10"/>
+                </Border.Effect>
+
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="BOOK A SHOW" 
+                               Foreground="#FFFFFF" FontSize="28" FontWeight="Black" 
+                               HorizontalAlignment="Center" Margin="0,0,0,25">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="12" Color="#FF0033" Opacity="0.8" ShadowDepth="0"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+
+                    <!-- ESEMÉNY TÍPUS -->
+                    <Border Background="#161622" BorderBrush="#2A2A3A" BorderThickness="1" CornerRadius="10" Padding="20,15" Margin="0,0,0,25">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="SELECT EVENT TYPE" Foreground="#A0A0B0" FontSize="11" FontWeight="Bold" 
+                                       HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                            <ComboBox x:Name="EventTypeCombo" Width="380" Height="40" FontSize="15" FontWeight="SemiBold"
+                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                      Background="#222232" Foreground="White">
+                                <ComboBoxItem Content="RAW - Main Event" IsSelected="True"/>
+                                <ComboBoxItem Content="SmackDown - Title Match"/>
+                                <ComboBoxItem Content="WrestleMania - Main Event"/>
+                                <ComboBoxItem Content="Royal Rumble - Fatal 4-Way"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- PÁROSÍTÁS -->
+                    <Grid Margin="0,0,0,30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- RED CORNER -->
+                        <Border Grid.Column="0" Background="#14141F" BorderBrush="#FF0033" BorderThickness="1.5" CornerRadius="12" Padding="18">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="15" Color="#FF0033" Opacity="0.25" ShadowDepth="0"/>
+                            </Border.Effect>
+                            <StackPanel>
+                                <TextBlock Text="RED CORNER [ ENTER ]" Foreground="#FF4D6D" FontSize="11" FontWeight="Black" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                                <ComboBox x:Name="Player1Combo" Height="40" FontSize="15" FontWeight="Bold" DisplayMemberPath="Name"
+                                          Background="#222230" Foreground="White"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- VS BADGE -->
+                        <Grid Grid.Column="1" Margin="20,0">
+                            <Ellipse Width="54" Height="54" Fill="#FF0033">
+                                <Ellipse.Effect>
+                                    <DropShadowEffect BlurRadius="20" Color="#FF0033" Opacity="0.9" ShadowDepth="0"/>
+                                </Ellipse.Effect>
+                            </Ellipse>
+                            <TextBlock Text="VS" Foreground="White" FontSize="20" FontWeight="Black" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <!-- BLUE CORNER -->
+                        <Border Grid.Column="2" Background="#14141F" BorderBrush="#0088FF" BorderThickness="1.5" CornerRadius="12" Padding="18">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="15" Color="#0088FF" Opacity="0.25" ShadowDepth="0"/>
+                            </Border.Effect>
+                            <StackPanel>
+                                <TextBlock Text="BLUE CORNER [ ENTER ]" Foreground="#4DABFF" FontSize="11" FontWeight="Black" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                                <ComboBox x:Name="Player2Combo" Height="40" FontSize="15" FontWeight="Bold" DisplayMemberPath="Name"
+                                          Background="#222230" Foreground="White"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- BOOK MATCH GOMB -->
+                    <Button x:Name="BookButton" Content="BOOK MATCH NOW" Width="300" Height="52" 
+                            FontSize="16" FontWeight="Black" Foreground="White" Cursor="Hand" Focusable="True">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="btnBorder" CornerRadius="8" BorderThickness="1.5" BorderBrush="#FF4D6D">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#E50914" Offset="0.0"/>
+                                            <GradientStop Color="#8A0008" Offset="1.0"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter TargetName="btnBorder" Property="BorderBrush" Value="#FFFFFF"/>
+                                        <Setter TargetName="btnBorder" Property="BorderThickness" Value="2"/>
+                                        <Setter TargetName="btnBorder" Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect BlurRadius="25" Color="#FF0033" Opacity="1"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </StackPanel>
+            </Border>
+
+            <!-- MECCS KIÍRÓ POPUP -->
+            <Grid x:Name="MatchDialog" Visibility="Collapsed" Background="#F2050508">
+                <Border Background="#12121A" BorderBrush="#FF0033" BorderThickness="2" CornerRadius="16" Padding="40,30" HorizontalAlignment="Center" VerticalAlignment="Center" Width="520">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="40" Color="#FF0033" Opacity="0.6" ShadowDepth="0"/>
+                    </Border.Effect>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="OFFICIAL MATCH CARD" Foreground="#FF0033" FontSize="13" FontWeight="Black" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+                        <TextBlock x:Name="MatchText" Text="MATCH BOOKED!" Foreground="White" FontSize="20" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" LineHeight="28" Margin="0,0,0,25"/>
+                        <Border Background="#1F1F2C" CornerRadius="6" Padding="14,8" HorizontalAlignment="Center">
+                            <TextBlock Text="[ Nyomj ENTER-t vagy ESC-et a bezáráshoz ]" Foreground="#A0A0B0" FontSize="12" FontWeight="SemiBold"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+
         <!-- KILÉPŐ ABLAK -->
-        <Grid x:Name="ExitDialog" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="Collapsed" Panel.ZIndex="1000" Background="#CC000000">
+        <Grid x:Name="ExitDialog" Visibility="Collapsed" Panel.ZIndex="1000" Background="#CC000000">
             <Border Background="#222222" BorderBrush="Orange" BorderThickness="3" CornerRadius="12" Width="500" Height="220" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock Text="Ki szeretnél lépni a játékból?" FontSize="22" Foreground="White" FontWeight="Bold" Margin="0,0,0,25" TextAlignment="Center"/>
