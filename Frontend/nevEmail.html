@@ -18,8 +18,9 @@
                     </div>
                 <div class="m-3">
                     <label for="">Email:</label>
-                    <input type="emai" class="bg-info" id="email" name="email"><br>
-                    <button type="submit" class=" btn bg-success mt-3" onclick="bekuld()">Beküld</button>
+                    <input type="email" class="bg-info" id="email" name="email"><br>
+                    <button type="button" class="btn bg-success mt-3" id="kuldes" onclick="bekuld()">Beküld</button>
+                    <button type="button" class="btn bg-success mt-3" id="kuldes" onclick="torles()">LocalStorage törlése</button>
                 </div>
                 <div class="row mt-5">
                     <div class="col-md-5">
@@ -32,10 +33,7 @@
                                             <th>Email</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="adatok">
-                                        <tr>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="adatok"></tbody>
                                 </table>
                             </div>
                         </div>
@@ -45,23 +43,74 @@
         </div>
     </div>
     <script>
-        function bekuld()
-        {
-            const nev = document.getElementById('nev').value;
-            const email = document.getElementById('email').value;
-            const tbody = document.getElementById('adatok');
-            //console.log(nev);
-            //console.log(email);
-            var row = tbody.insertRow(1);
-            var cella1 = row.insertCell(0);
-            var cella2 = row.insertCell(1);
-            cella1.innerHTML = nev;
-            cella2.innerHTML = email;
-            cella1.setAttribute('contenteditable', 'true');
-            cella2.setAttribute('contenteditable', 'true');
-            cella1.style.outline = 'none';
-            cella2.style.outline = 'none';
+
+        console.log(localStorage.getItem("nev"));
+        const adatok = JSON.parse(localStorage.getItem("adatok") || "[]");
+        const tabla = document.getElementById('adatok');
+        const nevInput = document.getElementById('nev');
+        const emailInput = document.getElementById('email');
+        const kuldes = document.getElementById('kuldes');
+        let selectedRowIndex = null;
+
+        function renderTabla() {
+            tabla.innerHTML = '';
+
+            adatok.forEach((adat, index) => {
+                const row = tabla.insertRow();
+                row.dataset.index = index;
+
+                const cella1 = row.insertCell(0);
+                const cella2 = row.insertCell(1);
+
+                cella1.textContent = adat[0];
+                cella2.textContent = adat[1];
+
+                row.addEventListener('click', () => {
+                    selectedRowIndex = Number(row.dataset.index);
+                    nevInput.value = adat[0];
+                    emailInput.value = adat[1];
+                    kuldes.textContent = 'Mentés';
+                });
+            });
         }
+
+        function torolInputok() {
+            nevInput.value = '';
+            emailInput.value = '';
+            selectedRowIndex = null;
+            kuldes.textContent = 'Beküld';
+        }
+
+        function bekuld() {
+            const nev = nevInput.value.trim();
+            const email = emailInput.value.trim();
+
+            if (selectedRowIndex !== null) {
+                adatok[selectedRowIndex] = [nev, email];
+            } else {
+                adatok.push([nev, email]);
+            }
+
+            localStorage.setItem('nev', nev);
+            //localStorage.setItem('email', email);
+            //localStorage.setItem('adatok', JSON.stringify(adatok));
+
+            renderTabla();
+            torolInputok();
+        }
+
+        function sutiKi() {
+            let x = document.cookie;
+            console.log(x);
+        }
+
+        function torles()
+        {
+            localStorage.clear();
+            console.log(localStorage.getItem("nev"));
+        }
+
+        renderTabla();
     </script>
 </body>
 </html>

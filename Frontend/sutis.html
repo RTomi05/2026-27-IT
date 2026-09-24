@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sütik</title>
+</head>
+<body>
+    <label for="nev">Felhasználónév: </label>
+    <input type="text" name="nev" id="nev">
+
+    <button onclick="sutiTarolo()">Küldés</button>
+	<button onclick="toroldKi()">Törlés</button>
+
+    <script>
+        function sutiTarolo()
+		{
+			let nev = document.getElementById("nev").value;
+            const d = new Date();
+            d.setTime(d.getTime() + (5*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = "név=" + nev + ";" + expires;
+            sutiKi();
+			localStorage.setItem("nev",nev);
+			console.log(localStorage.getItem("nev"));
+			localStorage.clear();
+			//console.log(localStorage.getItem("nev"));
+        }
+
+        function sutiKi() {
+            let x = document.cookie;
+            console.log(x);
+        }
+
+        function toroldKi()
+		{
+
+		}
+    </script>
+</body>
+</html>
