@@ -1,13 +1,13 @@
 1;Roman Reigns;98
 2;Cody Rhodes;97
-3;Rhea Ripley;95
+3;Rhea Ripley;94
 4;Gunther;93
 5;Seth Rollins;93
 6;CM Punk;93
-7;Drew McIntyre;91
-8;Randy Orton;91
-9;Becky Lynch;91
-10;Bianca Belair;90
+7;Becky Lynch;92
+8;Drew McIntyre;91
+9;Randy Orton;91
+10;Bianca Belair;91
 11;LA Knight;89
 12;Iyo Sky;89
 13;Sami Zayn;89

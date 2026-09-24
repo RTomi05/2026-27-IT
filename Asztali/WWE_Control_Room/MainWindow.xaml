@@ -490,7 +490,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
 
-                    <TextBlock Text="[ W / S vagy Nyilak ] Kijelölés   |   [ Enter ] Kiválasztás   |   [ ESC ] Vissza"
+                    <TextBlock Text="[ W / S or Arrows ] Move   |   [ Enter ] Select   |   [ ESC ] Go Back"
                                Foreground="#AAAAAA" FontSize="13" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                 </StackPanel>
             </Border>
@@ -511,7 +511,7 @@
                     <!-- FEJLÉC -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,25">
                         <TextBlock Text="⚡" Foreground="#FFD700" FontSize="26" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                        <TextBlock Text="OFFICIAL SHOW BOOKING" 
+                        <TextBlock Text="BOOK A SHOW!" 
                                    Foreground="White" FontSize="28" FontWeight="Black" 
                                    FontFamily="Oswald, Impact, Segoe UI"
                                    HorizontalAlignment="Center">
@@ -528,8 +528,8 @@
                             <TextBlock Text="✦ SELECT EVENT TYPE ✦" Foreground="#FFD700" FontSize="11" FontWeight="Bold" 
                                        HorizontalAlignment="Center" Margin="0,0,0,10"/>
                             <ComboBox x:Name="EventTypeCombo" Style="{StaticResource RosterComboBoxStyle}" Width="420" BorderBrush="#FFD700">
-                                <ComboBoxItem Content="🔥 RAW - Main Event" IsSelected="True"/>
-                                <ComboBoxItem Content="⚡ SmackDown - Title Match"/>
+                                <ComboBoxItem Content="MATCH" IsSelected="True"/>
+                                <ComboBoxItem Content="PROMO"/>
                             </ComboBox>
                         </StackPanel>
                     </Border>
@@ -549,7 +549,7 @@
                             </Border.Effect>
                             <StackPanel>
                                 <Border Background="#33FF0044" CornerRadius="6" Padding="8,4" HorizontalAlignment="Center" Margin="0,0,0,12">
-                                    <TextBlock Text="🔴 RED CORNER" Foreground="#FF6B8B" FontSize="11" FontWeight="Black"/>
+                                    <TextBlock Text="WRESTLER" Foreground="#FF6B8B" FontSize="11" FontWeight="Black"/>
                                 </Border>
                                 <ComboBox x:Name="Player1Combo" 
                                           Style="{StaticResource RosterComboBoxStyle}" 
@@ -580,7 +580,7 @@
                             </Border.Effect>
                             <StackPanel>
                                 <Border Background="#330088FF" CornerRadius="6" Padding="8,4" HorizontalAlignment="Center" Margin="0,0,0,12">
-                                    <TextBlock Text="🔵 BLUE CORNER" Foreground="#66B5FF" FontSize="11" FontWeight="Black"/>
+                                    <TextBlock Text="WRESTLER" Foreground="#66B5FF" FontSize="11" FontWeight="Black"/>
                                 </Border>
                                 <ComboBox x:Name="Player2Combo" 
                                           Style="{StaticResource RosterComboBoxStyle}" 
@@ -642,7 +642,7 @@
                     </Border.Effect>
                     <StackPanel HorizontalAlignment="Center">
                         <Border Background="#33FFD700" CornerRadius="6" Padding="12,4" HorizontalAlignment="Center" Margin="0,0,0,15">
-                            <TextBlock Text="🏆 OFFICIAL MATCH CARD 🏆" Foreground="#FFD700" FontSize="12" FontWeight="Black"/>
+                            <TextBlock Text="SEGMENT" Foreground="#FFD700" FontSize="12" FontWeight="Black"/>
                         </Border>
                         <TextBlock x:Name="MatchText" Text="MATCH BOOKED!" Foreground="White" FontSize="22" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" LineHeight="30" Margin="0,0,0,25">
                             <TextBlock.Effect>
@@ -650,7 +650,7 @@
                             </TextBlock.Effect>
                         </TextBlock>
                         <Border Background="#1A1B28" BorderBrush="#33FFFFFF" BorderThickness="1" CornerRadius="8" Padding="16,10" HorizontalAlignment="Center">
-                            <TextBlock Text="[ Nyomj ENTER-t vagy ESC-et a bezáráshoz ]" Foreground="#A0A0B0" FontSize="12" FontWeight="Bold"/>
+                            <TextBlock Text="[ Press ENTER or ESC to close ]" Foreground="#A0A0B0" FontSize="12" FontWeight="Bold"/>
                         </Border>
                     </StackPanel>
                 </Border>
@@ -661,13 +661,13 @@
         <Grid x:Name="ExitDialog" Visibility="Collapsed" Panel.ZIndex="1000" Background="#CC000000">
             <Border Background="#222222" BorderBrush="Orange" BorderThickness="3" CornerRadius="12" Width="500" Height="220" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="Ki szeretnél lépni a játékból?" FontSize="22" Foreground="White" FontWeight="Bold" Margin="0,0,0,25" TextAlignment="Center"/>
+                    <TextBlock Text="Do you want to quit?" FontSize="22" Foreground="White" FontWeight="Bold" Margin="0,0,0,25" TextAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Border Background="#333333" BorderBrush="LightGreen" BorderThickness="2" CornerRadius="6" Padding="15,10" Margin="10">
-                            <TextBlock Text="[ Enter ] Igen" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="[ Enter ] Yes" Foreground="White" FontSize="16" FontWeight="Bold"/>
                         </Border>
                         <Border Background="#333333" BorderBrush="Red" BorderThickness="2" CornerRadius="6" Padding="15,10" Margin="10">
-                            <TextBlock Text="[ Esc ] Nem" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="[ Esc ] No" Foreground="White" FontSize="16" FontWeight="Bold"/>
                         </Border>
                     </StackPanel>
                 </StackPanel>
