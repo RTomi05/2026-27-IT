@@ -1,50 +1,50 @@
-#1;Roman Reigns;97 PTS
-#2;Cody Rhodes;96 PTS
-#3;Rhea Ripley;96 PTS
-#4;Seth Rollins;93 PTS
-#5;Gunther;93 PTS
-#6;CM Punk;93 PTS
-#7;Drew McIntyre;92 PTS
-#8;Randy Orton;91 PTS
-#9;Bianca Belair;91 PTS
-#10;Becky Lynch;91 PTS
-#11;Charlotte Flair;90 PTS
-#12;Damian Priest;90 PTS
-#13;LA Knight;89 PTS
-#14;Logan Paul;89 PTS
-#15;Iyo Sky;89 PTS
-#16;Kevin Owens;89 PTS
-#17;Sami Zayn;89 PTS
-#18;Jey Uso;89 PTS
-#19;Liv Morgan;88 PTS
-#20;Tiffany Stratton;88 PTS
-#21;Bayley;88 PTS
-#22;Bron Breakker;88 PTS
-#23;Finn Bálor;87 PTS
-#24;AJ Styles;87 PTS
-#25;Nia Jax;87 PTS
-#26;Asuka;87 PTS
-#27;Shinsuke Nakamura;86 PTS
-#28;Solo Sikoa;86 PTS
-#29;Jade Cargill;86 PTS
-#30;Ilja Dragunov;85 PTS
-#31;Chad Gable;85 PTS
-#32;Rey Mysterio;85 PTS
-#33;Jimmy Uso;85 PTS
-#34;Dominik Mysterio;85 PTS
-#35;Lyra Valkyria;84 PTS
-#36;Carmelo Hayes;84 PTS
-#37;Shayna Baszler;84 PTS
-#38;R-Truth;83 PTS
-#39;Andrade;83 PTS
-#40;Karrion Kross;83 PTS
-#41;Piper Niven;83 PTS
-#42;Zelina Vega;82 PTS
-#43;Austin Theory;82 PTS
-#44;Grayson Waller;82 PTS
-#45;Ludwig Kaiser;82 PTS
-#46;Brutus Creed;82 PTS
-#47;Pete Dunne;81 PTS
-#48;Tyler Bate;81 PTS
-#49;Xavier Woods;81 PTS
-#50;Kofi Kingston;81 PTS
+1;Roman Reigns;98
+2;Cody Rhodes;97
+3;Rhea Ripley;95
+4;Gunther;93
+5;Seth Rollins;93
+6;CM Punk;93
+7;Drew McIntyre;91
+8;Randy Orton;91
+9;Becky Lynch;91
+10;Bianca Belair;90
+11;LA Knight;89
+12;Iyo Sky;89
+13;Sami Zayn;89
+14;Jey Uso;89
+15;Kevin Owens;88
+16;Charlotte Flair;88
+17;Tiffany Stratton;88
+18;Bron Breakker;88
+19;Liv Morgan;88
+20;Bayley;87
+21;Finn Bálor;87
+22;AJ Styles;87
+23;Asuka;86
+24;Nia Jax;86
+25;Logan Paul;86
+26;Damian Priest;86
+27;Solo Sikoa;86
+28;Jade Cargill;86
+29;Ilja Dragunov;85
+30;Chad Gable;85
+31;Rey Mysterio;85
+32;Jimmy Uso;85
+33;Dominik Mysterio;85
+34;Carmelo Hayes;84
+35;Lyra Valkyria;84
+36;Grayson Waller;84
+37;Shinsuke Nakamura;83
+38;R-Truth;83
+39;Andrade;83
+40;Karrion Kross;83
+41;Piper Niven;83
+42;Shayna Baszler;82
+43;Zelina Vega;82
+44;Austin Theory;82
+45;Ludwig Kaiser;82
+46;Brutus Creed;82
+47;Pete Dunne;81
+48;Tyler Bate;80
+49;Kofi Kingston;79
+50;Xavier Woods;78

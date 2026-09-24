@@ -434,7 +434,7 @@
                 </Border.Effect>
 
                 <StackPanel>
-                    <TextBlock Text="RÉSZTVEVŐK ÉS STATISZTIKÁK" FontSize="24" FontWeight="Bold" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    <TextBlock Text="WRESTLERS" FontSize="24" FontWeight="Bold" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
                     <DataGrid x:Name="PlayerGrid"
                               Height="420"
@@ -456,7 +456,7 @@
                               Focusable="True"
                               Margin="0,0,0,15">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="RANG" Binding="{Binding Rank}" Width="100">
+                            <DataGridTextColumn Header="RANK" Binding="{Binding Rank}" Width="100">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Foreground" Value="#FFD700"/>
@@ -467,7 +467,7 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn Header="NÉV" Binding="{Binding Name}" Width="*">
+                            <DataGridTextColumn Header="NAME" Binding="{Binding Name}" Width="*">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Foreground" Value="White"/>
@@ -478,7 +478,7 @@
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
 
-                            <DataGridTemplateColumn Header="ÉRTÉKELÉS" Width="160">
+                            <DataGridTemplateColumn Header="OVERALL" Width="160">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Border Background="#FFD700" CornerRadius="6" Padding="12,5" HorizontalAlignment="Center">
@@ -530,8 +530,6 @@
                             <ComboBox x:Name="EventTypeCombo" Style="{StaticResource RosterComboBoxStyle}" Width="420" BorderBrush="#FFD700">
                                 <ComboBoxItem Content="🔥 RAW - Main Event" IsSelected="True"/>
                                 <ComboBoxItem Content="⚡ SmackDown - Title Match"/>
-                                <ComboBoxItem Content="👑 WrestleMania - Main Event"/>
-                                <ComboBoxItem Content="🩸 Royal Rumble - Fatal 4-Way"/>
                             </ComboBox>
                         </StackPanel>
                     </Border>
