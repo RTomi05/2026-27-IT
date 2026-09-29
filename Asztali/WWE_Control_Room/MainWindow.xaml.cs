@@ -367,6 +367,7 @@ namespace WWE_Control_Room
                 try { combo.Text = targetUpper; } catch { }
             }
 
+
             // 2. Reflexióval frissítjük a Text vagy Content tulajdonságot is (ha a mező egy TextBlock, Label vagy Button)
             try
             {
@@ -739,6 +740,8 @@ namespace WWE_Control_Room
 
         private void HandleBookShowKeys(KeyEventArgs e)
         {
+            bool isPromo = GetCurrentEventType().Equals("Promo", StringComparison.OrdinalIgnoreCase);
+
             if (MatchDialog.Visibility == Visibility.Visible)
             {
                 if (e.Key == Key.Enter || e.Key == Key.Escape)
@@ -771,7 +774,7 @@ namespace WWE_Control_Room
                     e.Handled = true;
                     return;
                 }
-                else if (currentBookControl == BookShowControl.Player2)
+                else if (currentBookControl == BookShowControl.Player2 && !isPromo)
                 {
                     OpenRosterForPlayer(2);
                     e.Handled = true;
@@ -792,7 +795,7 @@ namespace WWE_Control_Room
                     if (currentBookControl == BookShowControl.Player1 || currentBookControl == BookShowControl.Player2)
                         SetBookShowFocus(BookShowControl.EventType);
                     else if (currentBookControl == BookShowControl.BookButton)
-                        SetBookShowFocus(BookShowControl.Player1);
+                        SetBookShowFocus(BookShowControl.Player1); // Mindkét esetben Player 1-re lép fel
                     e.Handled = true;
                     break;
 
@@ -830,9 +833,12 @@ namespace WWE_Control_Room
                     }
                     else if (currentBookControl == BookShowControl.Player1)
                     {
-                        SetBookShowFocus(BookShowControl.Player2);
+                        if (!isPromo) // Csak Match esetén enged át a Player 2-re
+                        {
+                            SetBookShowFocus(BookShowControl.Player2);
+                        }
                     }
-                    else if (currentBookControl == BookShowControl.Player2)
+                    else if (currentBookControl == BookShowControl.Player2 && !isPromo)
                     {
                         if (Player2Combo.SelectedIndex < Player2Combo.Items.Count - 1) Player2Combo.SelectedIndex++;
                     }
@@ -848,22 +854,31 @@ namespace WWE_Control_Room
         private void ExecuteBookMatch()
         {
             var eventType = GetCurrentEventType();
+            bool isPromo = eventType.Equals("Promo", StringComparison.OrdinalIgnoreCase);
 
             var p1 = Player1Combo.SelectedItem as Player;
-            var p2 = Player2Combo.SelectedItem as Player;
-
             string p1Name = p1 != null ? p1.Name : "Player 1";
+
+            // PROMO LOGIKA (1 szereplő)
+            if (isPromo)
+            {
+                MatchText.Text = $"PROMO\n\n{p1Name.ToUpper()}";
+                MatchDialog.Visibility = Visibility.Visible;
+                return;
+            }
+
+            // MATCH LOGIKA (2 szereplő)
+            var p2 = Player2Combo.SelectedItem as Player;
             string p2Name = p2 != null ? p2.Name : "Player 2";
 
             if (p1 != null && p2 != null && p1.Name == p2.Name)
             {
                 MatchText.Text = "HIBA!\nEgy birkózó nem küzdhet saját maga ellen!";
                 MatchDialog.Visibility = Visibility.Visible;
-                return;
             }
             else
             {
-                MatchText.Text = $"{eventType.ToUpper()}\n\n{p1Name}   VS   {p2Name}";
+                MatchText.Text = $"{eventType.ToUpper()}\n\n{p1Name.ToUpper()}   VS   {p2Name.ToUpper()}";
                 MatchDialog.Visibility = Visibility.Visible;
             }
         }
