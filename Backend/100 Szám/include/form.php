@@ -1,7 +1,9 @@
 <?php
     function form($szamok)
     {
+        var_dump($szamok);
         $szoveg = "";
+        $szoveg .= "<form action=\"" . uri(1) . "\" method=\"post\">";
         $szoveg .= '<div class="row">';
         for($i = 0; $i < sizeof($szamok); $i++)
             {
@@ -28,6 +30,8 @@
                 }
             }
         $szoveg .= '</div>';
+        $szoveg .= '<div class="row"><button type="submit" name="elkuld" class="btn btn-primary p-3 mt-4">Elküld</button></div>';
+        $szoveg .= '</form>';
         return $szoveg;
     }
 
@@ -35,10 +39,52 @@
     function szamGeneral()
     {
         $szamok = [];
-        for($i = 0; $i < 101; $i++)
+        for($i = 0; $i < 100; $i++)
             {
-                $szamok[] = rand(0,1001);
-            }  
+                $szamok[] = rand(0,1000);
+            }
     return $szamok;
+    }
+
+    /*
+    Fájlba menti a POST-ban érkező adatokat
+    */
+    function feldolgozas()
+    {
+        if(isset($_POST["elkuld"]))
+            {
+                $f = fopen("save.txt","w");
+                for($i = 0; $i < 100; $i++)
+                    {
+                        fwrite($f,$_POST["szam$i"] . "\n");
+                    }
+                fclose($f);
+
+                header("location:" . uri(1));
+                die();
+                //phpinfo(32);
+            }
+    }
+
+    /*
+    Adatok betöltése fájlból, ha létezik
+    */
+    function szamokBetolt()
+    {
+        if(file_exists("save.txt"))
+            {
+                $f = fopen("save.txt","r");
+                $vissza = [];
+                while(!feof($f))
+                    {
+                        $vissza[] = fgets($f);
+                    }
+                fclose($f);
+                return $vissza;
+            }
+        else
+        {
+            return szamGeneral();
+        }
     }
 ?>

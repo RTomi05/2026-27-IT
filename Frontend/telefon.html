@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telefon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <style>
+        .nyomogomb
+        {
+            background-color: dimgrey;
+        }
+    </style>
+</head>
+<body onload="billentyuzetLetrehoz()">
+    <div class="container">
+        <div class="col-12">
+            <div class="row kijelzo text-white bg-dark" style="min-height: 48px;">
+                <div class="col-12 text-end fs-4" id="kijelzo"></div>
+            </div>
+            <div class="row" id="billentyuzet">
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function billentyuzetLetrehoz()
+        {
+            let billentyuzet = document.getElementById("billentyuzet");
+            let hivas = false;
+            let kijelzo = document.getElementById("kijelzo");
+            
+            document.addEventListener("keydown", function(event)
+            {
+                if (/^\d$/.test(event.key))
+                {
+                    kijelzo.textContent += event.key;
+                }
+            });
+
+            for(let i = 0;i < 12;i++)
+            {
+                let elem = document.createElement("div");
+                elem.classList.add("col-4");
+                /*let gomb = document.createElement("button")
+                gomb.innerHTML = i+1
+                gomb.classList.add("object-fit-fill")
+                elem.appendChild(gomb)*/
+                if(i < 11)
+                {
+                    elem.textContent = i+1;
+                    
+                    elem.addEventListener("click", function()
+                    {
+                        document.getElementById("kijelzo").textContent += elem.textContent;
+                    });
+                }
+                if(i == 9)
+                {
+                    elem.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill text-danger" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg>'
+                    elem.addEventListener("click", function()
+                    {
+                        if(hivas)
+                        {
+                            console.log("Hívás megszakítva!");
+                            hivas = false;
+                        }
+                    else
+                        {
+                            console.log("Még nincs folyamatban hívás!");
+                            console.log("Bemenet törölve!")
+                            document.getElementById("kijelzo").innerHTML = "";
+                        }
+                    });
+                }
+                if(i == 10)
+                {
+                    elem.innerHTML = 0;
+                }
+                if(i == 11)
+                {
+                    elem.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill text-success" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></svg>'
+                    elem.addEventListener("click", function()
+                    {
+                        if(hivas)
+                        {
+                            console.log("Már folyamatban van egy hívás!");
+                        }
+                    else
+                        {
+                            console.log("Hívás elindítva!");
+                            document.getElementById("kijelzo").innerHTML = "";
+                            hivas = true;
+                        }
+                    });
+                }
+                
+                elem.classList.add("text-center");
+                elem.classList.add("border");
+                elem.classList.add("border-black");
+                elem.classList.add("nyomogomb");
+                billentyuzet.appendChild(elem);
+            }
+        }
+
+    </script>
+
+</body>
+</html>

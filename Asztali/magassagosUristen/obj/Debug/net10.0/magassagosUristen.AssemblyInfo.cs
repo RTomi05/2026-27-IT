@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("magassagosUristen")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7269510d392a52eddda0f0ca32bb50bbe1c10236")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eef69970e4e5f33648be235b0cc78bc7785ac9b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("magassagosUristen")]
 [assembly: System.Reflection.AssemblyTitleAttribute("magassagosUristen")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
