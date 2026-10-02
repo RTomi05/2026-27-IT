@@ -69,7 +69,7 @@
     /*
     Adatok betöltése fájlból, ha létezik
     */
-    function szamokBetolt()
+    function szamokBetolt($generalj=true)
     {
         if(file_exists("save.txt"))
             {
@@ -77,14 +77,19 @@
                 $vissza = [];
                 while(!feof($f))
                     {
-                        $vissza[] = fgets($f);
+                        $vissza[] = trim(fgets($f));
                     }
                 fclose($f);
+                array_pop($vissza);
                 return $vissza;
             }
+        else if($generalj)
+            {
+                return szamGeneral();
+            }
         else
-        {
-            return szamGeneral();
-        }
+            {
+                return false;
+            }
     }
 ?>

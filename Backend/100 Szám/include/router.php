@@ -12,10 +12,16 @@ switch($_GET["menu"] ?? 0)
         $mainContent = form($szamok);
         break;
     case 2:
+        include("include/form.php");
         include("include/tablazat.php");
+        $szamok = szamokBetolt(false);
+        $mainContent = tablazat($szamok);
         break;
     case 3:
-        include("include/layout.php");
+        include("include/form.php");
+        include("include/tablazat.php");
+        $szamok = szamokBetolt(false);
+        $mainContent = tablazat($szamok, true);
         break;
 }
 ?>
