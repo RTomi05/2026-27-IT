@@ -5,13 +5,14 @@ switch($_GET["menu"] ?? 0)
 {
     case 1:
     default:
-        $mainContent = "ez";
+        $mainContent = fooldal();
         break;
     case 2:
-        $mainContent = "ez";
+        $mainContent = aloldal();
         break;
     case 3:
-        $mainContent = "ez";
+        $mainContent = form();
+        feldolgozas();
         break;
 }
 ?>
