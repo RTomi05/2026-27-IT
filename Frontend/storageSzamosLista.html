@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>Számok Storageban és listában</title>
+</head>
+<body>
+    <div class="container">
+    <!-- 1. SOR: Számológép középen -->
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="row">
+                <div class="col-12 bg-warning text-danger display-4" id="kijelzo">&nbsp;</div>
+            </div>
+            <div class="row" id="billentyuzet"></div>
+        </div>
+    </div>
+
+    <!-- 2. SOR: Összeg kijelző alatta, középre igazítva -->
+    <div class="row justify-content-center mt-3">
+        <div class="col-6 text-center">
+            <div id="szamKijelzo"></div>
+            <div class="mt-2"><span id="osszegKijelzo">&nbsp;</span></div>
+        </div>
+    </div>
+</div>
+    <script>
+        let szamok = [];
+        billentyuzet();
+        function billentyuzet()
+        {
+            let b = document.getElementById("billentyuzet");
+            for(let i = 1; i < 10; i++)
+            {
+                b.appendChild(egyGomb(i));
+            }
+            b.appendChild(egyGomb("Összeadás"));
+            b.appendChild(egyGomb(0));
+            b.appendChild(egyGomb("Beküldés"));
+        }
+
+        function egyGomb(felirat)
+        {
+            let gomb = document.createElement("div");
+            gomb.className = "col-4 bg-info border rounded p-3 text-white text-center"
+            gomb.innerHTML = felirat;
+
+            gomb.addEventListener("click",e =>{
+                //console.log(felirat,e);
+                if(felirat == "Beküldés")
+                {
+                    let kijelzo = document.getElementById("kijelzo");
+                    let beirtSzam = kijelzo.textContent.trim();
+                    if(beirtSzam !== "")
+                    {
+                        szamok.push(Number(beirtSzam));
+                        //document.getElementById("szamKijelzo").textContent = szamok.join(", ");
+                        kijelzo.innerHTML = "&nbsp;";
+                    }
+                    console.log("Beküldve");
+                }
+                else if(felirat == "Összeadás")
+                {
+                    let osszeg = szamok.reduce((total, szam) => total + szam, 0);
+                    document.getElementById("osszegKijelzo").textContent = "Összeg: " + osszeg;
+                }
+                else if(felirat !== "")
+                {
+                    let kijelzo = document.getElementById("kijelzo");
+                    if(kijelzo.textContent.trim() === "")
+                    {
+                        kijelzo.textContent = "";
+                    }
+                    kijelzo.textContent += felirat;
+                }
+            })
+            return gomb;
+        }
+        console.log(szamok);
+    </script>
+</body>
+</html>

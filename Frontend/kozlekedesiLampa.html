@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>Közlekedési lámpa</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-1 border rounded-circle" style="height: 200px; width: 200px; background-color: red;" id="piros"></div>
+        <div class="row">
+            <div class="col-1 border rounded-circle" style="height: 200px; width: 200px; background-color: yellow;" id="sarga"></div>
+        <div class="row">
+            <div class="col-1 border rounded-circle" style="height: 200px; width: 200px; background-color: green;" id="zold"></div>
+            </div>
+        </div>
+        <button onclick="pirosra()">Újrakezdés</button>
+        <button onclick="stoppolj()">ÁT AKAROK MENNI!</button>
+        <div class="row" id="jovan"></div>
+        </div>
+    </div>
+    <script>
+        //közlekedési lámpa időzítővel
+        let allas = 0;
+        let idozito = null;
+        function pirosra()
+        {
+            clearTimeout(idozito);
+                document.getElementById("piros").style.backgroundColor = "red";
+                document.getElementById("sarga").style.backgroundColor = "black";
+                document.getElementById("zold").style.backgroundColor = "black";
+                idozito = setTimeout(sargara, 7000);
+                allas = 1;
+                document.getElementById("jovan").innerHTML = "";
+        }
+
+        function sargara()
+        {
+            document.getElementById("piros").style.backgroundColor = "red";
+            document.getElementById("sarga").style.backgroundColor = "yellow";
+            document.getElementById("zold").style.backgroundColor = "black";
+            idozito = setTimeout(zoldre, 2000);
+            allas = 2;
+        }
+
+        function zoldre()
+        {
+            document.getElementById("piros").style.backgroundColor = "black";
+            document.getElementById("sarga").style.backgroundColor = "black";
+            document.getElementById("zold").style.backgroundColor = "green";
+            idozito = setTimeout(visszaSargara, 7000);
+            allas = 3;
+
+        }
+
+        function visszaSargara()
+        {
+            document.getElementById("piros").style.backgroundColor = "black";
+            document.getElementById("sarga").style.backgroundColor = "yellow";
+            document.getElementById("zold").style.backgroundColor = "black";
+            idozito = setTimeout(pirosra, 2000);
+        }
+
+        function stoppolj()
+        {
+            clearTimeout(idozito);
+            idozito = setTimeout(visszaSargara, 2000);
+            allas = 0;
+            document.getElementById("jovan").innerHTML = "JÓVAN!";
+        }
+    </script>
+</body>
+</html>

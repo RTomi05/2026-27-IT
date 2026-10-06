@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>Storage adat</title>
+</head>
+<body onload="megjelenites()">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-9">
+                <label for="adat" class="mt-4">Adjon meg egy adatot!</label>
+                <input type="text" name="adat" id="adat" class="form-control mt-4">
+                <button onclick="kuldes()" class="col-5 btn btn-primary mt-4">Küldés</button>
+            </div>
+            <div class="col-2 mt-4" id="adatok"></div>
+        </div>
+    </div>
+    <script>
+        function megjelenites() {
+            const adatok = JSON.parse(localStorage.getItem("adatok"));
+            document.getElementById("adatok").textContent += adatok.join(", ");
+        }
+        function kuldes() {
+            const adat = document.getElementById("adat").value;
+            const adatok = JSON.parse(localStorage.getItem("adatok") || "[]");
+            adatok.push(adat);
+            adat.value = "";
+            localStorage.setItem("adatok", JSON.stringify(adatok));
+            megjelenites();
+        }
+        localStorage.clear();
+    </script>
+</body>
+</html>
