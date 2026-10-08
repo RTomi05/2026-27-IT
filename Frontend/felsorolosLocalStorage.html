@@ -15,33 +15,23 @@
                 <input type="text" name="adat" id="adat" class="form-control mt-4">
                 <button onclick="kuldes()" class="col-5 btn btn-primary mt-4">Küldés</button>
             </div>
-            <div class="col-3 mt-4" id="adatok">wdugvniugni</div>
+            <div class="col-2 mt-4" id="adatok"></div>
         </div>
     </div>
     <script>
-        function megjelenites()
-        {
-        // Ha nincs még adat, egy üres listával [ ] dolgozunk, hogy ne szálljon el a kód
-        const adatok = JSON.parse(localStorage.getItem("adatok")) || [];
-        document.getElementById("adatok").textContent = adatok.join(", ");
+        function megjelenites() {
+            const adatok = JSON.parse(localStorage.getItem("adatok"));
+            document.getElementById("adatok").textContent += adatok.join(", ");
         }
-
-    function kuldes()
-        {
-        const inputMezo = document.getElementById("adat");
-        const adat = inputMezo.value;
-
-        if (adat.trim() === "") return; // Üresen ne mentsen semmit
-
-        const adatok = JSON.parse(localStorage.getItem("adatok") || "[]");
-        adatok.push(adat);
-        
-        localStorage.setItem("adatok", JSON.stringify(adatok));
-        inputMezo.value = ""; // Így ürítjük ki a beviteli mezőt
-        megjelenites();
+        function kuldes() {
+            const adat = document.getElementById("adat").value;
+            const adatok = JSON.parse(localStorage.getItem("adatok") || "[]");
+            adatok.push(adat);
+            adat.value = "";
+            localStorage.setItem("adatok", JSON.stringify(adatok));
+            megjelenites();
         }
-
-// A localStorage.clear(); sort töröltük innen, hogy megmaradjanak az adatok!
+        localStorage.clear();
     </script>
 </body>
 </html>
