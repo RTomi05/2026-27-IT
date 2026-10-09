@@ -1,0 +1,11 @@
+<?php
+    function fooldal()
+    {
+        return '<h1 class="m-5 text-center">Főoldal - Maga Párizs</h1>
+            <div class="col-8"><img src="include/paris.jpg" class="m-2" style="height: 600px; width: 800px"; alt="Párizs"></div>
+            <div class="col-12"><p>Nem Párizs, de:<br>
+            Az első híresztelések már rögtön a Grand Theft Auto V megjelenése után elkezdtek terjedni. 2018-ban megjelent egy hír, miszerint a Rockstar következő címét Project Americas kódnéven fejleszti.[3][4] Később a Take-Two vezérigazgatója megerősítette, hogy a komolyabb fejlesztést 2020-ban kezdték el.[5] Később a Bloomberg jelentései szerint a játék a Grand Theft Auto: Vice City-hez hasonlóan a fiktív Miamiban, Vice Cityben fog játszódni (erre utaló jeleket a GTA V-ben is találtak). Tom Henderson 2021-ben bejelentette, hogy a GTA 6 valószínűleg 2024 vagy 2025 során fog megjelenni.[6] 2022. február 4-én a Rockstar hivatalosan is bejelentette, hogy gőzerővel dolgoznak a következő Grand Theft Auto címen.[7] 2023. november 8-án a cég bejelentette, hogy december elején érkezik a játék első előzetese.[8] December 1-én ezt a dátumok konkretizálták, mely szerint 2023. december 5-én, magyar idő szerint 15:00-kor érkezik a betekintő (ezt a dátumot hamarabb, a GTA Online-ban egy szürke pólóban is elrejtették).[9] 2023. december 5-én éjfélkor, az eredeti időpont előtt 15 órával váratlanul kikerült a játék előzetese, mivel szivárogtatók hamarabb elkezdték terjeszteni a kész trailer-t, amelyből kiderült a játék címe, és hogy 2025-ben jelenik meg.[10] Később a kiadó konkretizálta, hogy 2025 őszén érkezhet a játék.[11] 2025. május 2-án a Rockstar bejelentette, hogy a játékot 2026. május 26-ára halasztották.[12] A második előzetest 2025. május 6-án adtak ki, amely felfedte a főszereplők teljes nevét. Ezen kívül frissítették a játék weboldalát, 70 képernyőképpel, valamint több szereplő- és helyszínleírással.[13][14] Rengeteg kiadó kész volt a játéka megjelenését hónapokkal eltolni, hogy az ne ütközzön a GTA VI megjelenésével.[15] A Ghost of Yōtei társrendezője egy interjúban árulta el, hogy a cégen belül hatalmas ünneplés volt, mikor kiderült, hogy nem kell a játékukat elhalasztani.';
+    }
+
+?>
+
