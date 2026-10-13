@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>Random User</title>
+    <style>
+    input[type="checkbox"] {
+        transform: scale(1.5); /* 1.5-szeres méret (lehet 2 is, ha még nagyobbat szeretnél) */
+        margin-right: 8px;     /* hogy ne érjen hozzá a szöveghez */
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="m-5 text-center">Random User</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                
+                <a class="nav-link m-2" href="" onclick="adatok()"><h5>Adatok megadása</h5></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active m-2" aria-current="page" href="" onclick="lekeres()"><h5>Lekérés</h5></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="row text-center">
+            <div class="col-12" id="adatok">
+                <h1 class="m-5">Adatok</h1>
+                <div><input type="checkbox" id="chkKep" checked>  Kép</div>
+                <div><input type="checkbox" id="chkGender" checked>   Nem</div>
+                <div><input type="checkbox" id="chkUserName" checked>   Név</div>
+                <div><input type="checkbox" id="chkLokacio" checked>   Lakhely</div>
+                <div><input type="checkbox" id="chkEmail" checked>   Email</div>
+                <div><input type="checkbox" id="chkCell" checked>   Telefonszám</div>
+                <div><input type="checkbox" id="chkDatum" checked>   Születési dátum</div>
+                <div><input type="checkbox" id="chkEletkor" checked>   Életkor</div>
+                <button class="btn btn-primary m-3" onclick="lekeres()">Küldés</button>
+            </div>
+            <div class="col-12 d-none" id="lekeres">
+                <h1>Lekérés</h1>
+                <img src="" id="kep" alt="">
+                <h5 id="gender"></h5>
+                <h5 id="userName" class=""></h5>
+                <h5 id="lokacio"></h5>
+                <h5 id="email"></h5>
+                <h5 id="cell"></h5>
+                <h5 id="datum"></h5>
+                <h5 id="eletkor"></h5>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function adatok()
+        {
+            if (window.event) window.event.preventDefault();
+            document.getElementById("adatok").classList.remove("d-none");
+            document.getElementById("lekeres").classList.add("d-none");
+        }
+
+        function lekeres()
+        {
+            if (window.event) window.event.preventDefault();
+            document.getElementById("adatok").classList.add("d-none");
+            document.getElementById("lekeres").classList.remove("d-none");
+
+            fetch('https://randomuser.me/api/')
+            .then(x => x.json())
+            .then(x => {
+                const user = x.results[0];
+
+                const mezo = (chkId, elemId, ertek) => {
+                    const active = document.getElementById(chkId).checked;
+                    const elem = document.getElementById(elemId);
+                    
+                    elem.classList.toggle('d-none', !active);
+                    if (active) elem.tagName === 'IMG' ? elem.src = ertek : elem.textContent = ertek;
+                };
+
+                mezo('chkKep', 'kep', user.picture.large);
+                mezo('chkGender', 'gender', user.gender === 'male' ? 'Nem: férfi' : 'Nem: nő');
+                mezo('chkUserName', 'userName', `Név: ${user.name.first} ${user.name.last}`);
+                mezo('chkLokacio', 'lokacio', `Lakhely: ${user.location.city}`);
+                mezo('chkEmail', 'email', `Email: ${user.email}`);
+                mezo('chkCell', 'cell', `Telefonszám: ${user.cell}`);
+                mezo('chkDatum', 'datum', `Születési dátum: ${user.dob.date}`);
+                mezo('chkEletkor', 'eletkor', `Életkor: ${user.dob.age}`);
+            })
+            .catch(error => console.error('Hiba történt:', error));
+        }
+    </script>
+</body>
+</html>
