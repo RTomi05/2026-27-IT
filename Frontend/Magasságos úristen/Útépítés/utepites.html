@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Útépítés</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="m-5 text-center">Útépítés</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                
+                <a class="nav-link m-2" href="" onclick="feladat2()"><h5>2. feladat</h5></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active m-2" aria-current="page" href="" onclick="feladat3()"><h5>3. feladat</h5></a>
+                    </div>
+                    <div class="navbar-nav">
+                        <a class="nav-link active m-2" aria-current="page" href="" onclick="feladat4()"><h5>4. feladat</h5></a>
+                    </div>
+                    <div class="navbar-nav">
+                        <a class="nav-link active m-2" aria-current="page" href="" onclick="feladat5()"><h5>5. feladat</h5></a>
+                    </div>
+                    <div class="navbar-nav">
+                        <a class="nav-link active m-2" aria-current="page" href="" onclick="feladat6()"><h5>6. feladat</h5></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="row text-center">
+            <div class="col-12" id="feladat2">
+                <h1 class="m-5">2</h1>
+                <button class="btn btn-primary m-3" onclick="lekeres()">Küldés</button>
+            </div>
+            <div class="col-12" id="feladat3">
+                <h1>3</h1>
+                <img src="" id="kep" alt="">
+                <h5 id="gender"></h5>
+                <h5 id="userName" class=""></h5>
+            </div>
+            <div class="col-12" id="feladat4">
+                <h1>4</h1>
+                <img src="" id="kep" alt="">
+                <h5 id="gender"></h5>
+                <h5 id="userName" class=""></h5>
+            </div>
+            <div class="col-12" id="feladat5">
+                <h1>5</h1>
+                <img src="" id="kep" alt="">
+                <h5 id="gender"></h5>
+                <h5 id="userName" class=""></h5>
+            </div>
+            <div class="col-12" id="feladat6">
+                <h1>6</h1>
+                <img src="" id="kep" alt="">
+                <h5 id="gender"></h5>
+                <h5 id="userName" class=""></h5>
+            </div>
+        </div>
+    </div>
+    <script>
+        function feladat2()
+        {
+            event.preventDefault();
+            document.getElementById("feladat2").classList.remove("d-none");
+            document.getElementById("feladat3").classList.add("d-none");
+            document.getElementById("feladat4").classList.add("d-none");
+            document.getElementById("feladat5").classList.add("d-none");
+            document.getElementById("feladat6").classList.add("d-none");
+        }
+
+        function feladat3()
+        {
+            event.preventDefault();
+            document.getElementById("feladat3").classList.remove("d-none");
+            document.getElementById("feladat2").classList.add("d-none");
+            document.getElementById("feladat4").classList.add("d-none");
+            document.getElementById("feladat5").classList.add("d-none");
+            document.getElementById("feladat6").classList.add("d-none");
+        }
+
+        function feladat4()
+        {
+            event.preventDefault();
+            document.getElementById("feladat4").classList.remove("d-none");
+            document.getElementById("feladat2").classList.add("d-none");
+            document.getElementById("feladat3").classList.add("d-none");
+            document.getElementById("feladat5").classList.add("d-none");
+            document.getElementById("feladat6").classList.add("d-none");
+        }
+
+        function feladat5()
+        {
+            event.preventDefault();
+            document.getElementById("feladat5").classList.remove("d-none");
+            document.getElementById("feladat2").classList.add("d-none");
+            document.getElementById("feladat3").classList.add("d-none");
+            document.getElementById("feladat4").classList.add("d-none");
+            document.getElementById("feladat6").classList.add("d-none");
+        }
+
+        function feladat6()
+        {
+            event.preventDefault();
+            document.getElementById("feladat6").classList.remove("d-none");
+            document.getElementById("feladat2").classList.add("d-none");
+            document.getElementById("feladat3").classList.add("d-none");
+            document.getElementById("feladat4").classList.add("d-none");
+            document.getElementById("feladat5").classList.add("d-none");
+        }
+    </script>
+</body>
+</html>
