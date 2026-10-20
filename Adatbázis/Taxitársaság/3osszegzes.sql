@@ -1,0 +1,1 @@
+SELECT CONCAT(COUNT(id)," fuvar és ",SUM(tav), " km távolság") AS "3 napi összegzés" FROM fuvar;

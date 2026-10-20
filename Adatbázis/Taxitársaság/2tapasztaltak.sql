@@ -1,0 +1,1 @@
+SELECT DISTINCT sofor, rendszam, engedely FROM gepkocsi WHERE vizsga = TRUE ORDER BY sofor ASC;
