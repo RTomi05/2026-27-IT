@@ -38,35 +38,35 @@ namespace RealEstate
             Category = category;
         }
 
-        public static List<Ad> LoadFromCsv(string fileName)
+        public static List<Ad> LoadFromCsv(string fajlnev)
         {
             List<Ad> lista = new List<Ad>();
-            string[] lines = File.ReadAllLines(fileName, Encoding.UTF8);
+            string[] sorok = File.ReadAllLines(fajlnev, Encoding.UTF8);
 
-            for (int i = 1; i < lines.Length; i++)
+            for (int i = 1; i < sorok.Length; i++)
             {
-                if (string.IsNullOrWhiteSpace(lines[i])) continue;
+                if (string.IsNullOrWhiteSpace(sorok[i])) continue;
 
-                string[] parts = lines[i].Split(';');
+                string[] darabol = sorok[i].Split(';');
 
-                int id = int.Parse(parts[0]);
-                int rooms = int.Parse(parts[1]);
-                string latLong = parts[2];
-                int floors = int.Parse(parts[3]);
-                int area = int.Parse(parts[4]);
-                string description = parts[5];
-                bool freeOfCharge = parts[6] == "1";
-                string imageUrl = parts[7];
-                DateTime createAt = DateTime.Parse(parts[8]);
+                int id = int.Parse(darabol[0]);
+                int rooms = int.Parse(darabol[1]);
+                string latLong = darabol[2];
+                int floors = int.Parse(darabol[3]);
+                int area = int.Parse(darabol[4]);
+                string description = darabol[5];
+                bool freeOfCharge = darabol[6] == "1";
+                string imageUrl = darabol[7];
+                DateTime createAt = DateTime.Parse(darabol[8]);
 
-                int sellerId = int.Parse(parts[9]);
-                string sellerName = parts[10];
-                string sellerPhone = parts[11];
+                int sellerId = int.Parse(darabol[9]);
+                string sellerName = darabol[10];
+                string sellerPhone = darabol[11];
                 Seller seller = new Seller(sellerId, sellerName, sellerPhone);
 
-                int categoryId = int.Parse(parts[12]);
-                string categoryName = parts[13];
-                Category category = new Category(categoryId, categoryName);
+                int categoryId = int.Parse(darabol[12]);
+                string categoryNev = darabol[13];
+                Category category = new Category(categoryId, categoryNev);
 
                 Ad ad = new Ad(id, rooms, latLong, floors, area, description, freeOfCharge, imageUrl, createAt, seller, category);
                 lista.Add(ad);
@@ -75,7 +75,7 @@ namespace RealEstate
             return lista;
         }
 
-        public double DistanceTo(double targetLat, double targetLong)
+        public double Tavolsag(double targetLat, double targetLong)
         {
             string[] coords = LatLong.Split(',');
             double lat = double.Parse(coords[0], CultureInfo.InvariantCulture);

@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Tomi\\source\\repos\\2026-27-IT\\Asztali\\RealEstate\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8B6B1B0A-7D07-408D-A9BF-6A8827A898AF}|RealEstate.csproj|c:\\users\\tomi\\source\\repos\\2026-27-it\\asztali\\realestate\\ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B6B1B0A-7D07-408D-A9BF-6A8827A898AF}|RealEstate.csproj|solutionrelative:ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{68AB7C4D-DD16-87C3-9518-628FAB76FB03}|RealEstate.csproj|c:\\users\\tomi\\source\\repos\\2026-27-it\\asztali\\realestate\\ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68AB7C4D-DD16-87C3-9518-628FAB76FB03}|RealEstate.csproj|solutionrelative:ad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B6B1B0A-7D07-408D-A9BF-6A8827A898AF}|RealEstate.csproj|c:\\users\\tomi\\source\\repos\\2026-27-it\\asztali\\realestate\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B6B1B0A-7D07-408D-A9BF-6A8827A898AF}|RealEstate.csproj|solutionrelative:category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{68AB7C4D-DD16-87C3-9518-628FAB76FB03}|RealEstate.csproj|c:\\users\\tomi\\source\\repos\\2026-27-it\\asztali\\realestate\\seller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68AB7C4D-DD16-87C3-9518-628FAB76FB03}|RealEstate.csproj|solutionrelative:seller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B6B1B0A-7D07-408D-A9BF-6A8827A898AF}|RealEstate.csproj|c:\\users\\tomi\\source\\repos\\2026-27-it\\asztali\\realestate\\seller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B6B1B0A-7D07-408D-A9BF-6A8827A898AF}|RealEstate.csproj|solutionrelative:seller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{68AB7C4D-DD16-87C3-9518-628FAB76FB03}|RealEstate.csproj|c:\\users\\tomi\\source\\repos\\2026-27-it\\asztali\\realestate\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68AB7C4D-DD16-87C3-9518-628FAB76FB03}|RealEstate.csproj|solutionrelative:category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8B6B1B0A-7D07-408D-A9BF-6A8827A898AF}|RealEstate.csproj|c:\\users\\tomi\\source\\repos\\2026-27-it\\asztali\\realestate\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8B6B1B0A-7D07-408D-A9BF-6A8827A898AF}|RealEstate.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{68AB7C4D-DD16-87C3-9518-628FAB76FB03}|RealEstate.csproj|c:\\users\\tomi\\source\\repos\\2026-27-it\\asztali\\realestate\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68AB7C4D-DD16-87C3-9518-628FAB76FB03}|RealEstate.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,33 +36,33 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Tomi\\source\\repos\\2026-27-IT\\Asztali\\RealEstate\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwB4AAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-20T09:05:09.554Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\Users\\Tomi\\source\\repos\\2026-27-IT\\Asztali\\RealEstate\\Category.cs",
               "RelativeDocumentMoniker": "Category.cs",
               "ToolTip": "C:\\Users\\Tomi\\source\\repos\\2026-27-IT\\Asztali\\RealEstate\\Category.cs",
               "RelativeToolTip": "Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-20T09:05:39.667Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Seller.cs",
               "DocumentMoniker": "C:\\Users\\Tomi\\source\\repos\\2026-27-IT\\Asztali\\RealEstate\\Seller.cs",
               "RelativeDocumentMoniker": "Seller.cs",
               "ToolTip": "C:\\Users\\Tomi\\source\\repos\\2026-27-IT\\Asztali\\RealEstate\\Seller.cs",
               "RelativeToolTip": "Seller.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-20T09:06:05.231Z",
               "EditorCaption": ""
@@ -75,7 +75,7 @@
               "RelativeDocumentMoniker": "Ad.cs",
               "ToolTip": "C:\\Users\\Tomi\\source\\repos\\2026-27-IT\\Asztali\\RealEstate\\Ad.cs",
               "RelativeToolTip": "Ad.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAiwEwAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAArwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-20T09:06:23.396Z",
               "EditorCaption": ""

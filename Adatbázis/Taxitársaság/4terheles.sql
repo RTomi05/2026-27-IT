@@ -1,0 +1,1 @@
+SELECT DISTINCT sofor FROM gepkocsi, fuvar WHERE gepkocsi.rendszam = fuvar.rendszam GROUP BY sofor HAVING SUM(fuvar.tav) > 80;

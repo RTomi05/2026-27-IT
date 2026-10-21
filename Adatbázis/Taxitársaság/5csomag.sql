@@ -1,0 +1,1 @@
+SELECT DISTINCT sofor, gepkocsi.rendszam FROM gepkocsi JOIN fuvar ON gepkocsi.rendszam = fuvar.rendszam WHERE tav BETWEEN 10 and 15 AND gepkocsi.rendszam LIKE "%3%" OR "%5%";
