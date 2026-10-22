@@ -15,6 +15,7 @@
         public $masodperc;
         public $ido;
         public $varos;
+		public $sebesseg;
 
         public function __construct($sor) {
             $adatok = explode(" ",$sor);
@@ -23,6 +24,7 @@
             $this->masodperc = $adatok[2];
             $this->ido = $adatok[3];
             $this->varos = $adatok[4];
+			$this->sebesseg = 1000/$this->ido;
         }
     }
 
