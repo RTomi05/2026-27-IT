@@ -9,13 +9,11 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- 12. feladat: Bal oldali lista a nevekkel -->
-        <ListBox x:Name="lbSellers" 
+        <ListBox x:Name="eladok" 
                  Grid.Column="0" 
                  DisplayMemberPath="Name" 
                  Margin="0,0,15,0" />
 
-        <!-- Jobb oldali részletek és gomb -->
         <Grid Grid.Column="1" Margin="10,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -28,26 +26,22 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- 13. feladat: Eladó neve (DataTable kötéshez [Name] kell) -->
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Eladó neve:" Margin="0,5" VerticalAlignment="Center" />
             <TextBlock Grid.Row="0" Grid.Column="1" 
-                       Text="{Binding SelectedItem[Name], ElementName=lbSellers}" 
+                       Text="{Binding SelectedItem.Name, ElementName=eladok}" 
                        Margin="0,5" VerticalAlignment="Center" FontWeight="SemiBold" />
 
-            <!-- 14. feladat: Eladó telefonszáma (DataTable kötéshez [Phone] kell) -->
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Eladó telefonszáma:" Margin="0,5" VerticalAlignment="Center" />
             <TextBlock Grid.Row="1" Grid.Column="1" 
-                       Text="{Binding SelectedItem[Phone], ElementName=lbSellers}" 
+                       Text="{Binding SelectedItem.Phone, ElementName=eladok}" 
                        Margin="0,5" VerticalAlignment="Center" />
 
-            <!-- 15. feladat: Hirdetések betöltése gomb -->
-            <Button x:Name="btnLoadAds" 
+            <Button x:Name="betoltes" 
                     Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
                     Content="Hirdetések betöltése" 
                     Margin="0,15,0,15" Padding="10,5" 
-                    Click="btnLoadAds_Click" />
+                    Click="betoltes_Click" />
 
-            <!-- 15. feladat: Hirdetések száma -->
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Hirdetések száma:" Margin="0,5" VerticalAlignment="Center" />
             <TextBlock x:Name="tbAdCount" Grid.Row="3" Grid.Column="1" Text="" Margin="0,5" VerticalAlignment="Center" />
         </Grid>

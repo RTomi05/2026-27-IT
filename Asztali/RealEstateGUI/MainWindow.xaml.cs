@@ -1,38 +1,41 @@
-﻿using System;
-using System.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
-using MySql.Data.MySqlClient;
+using RealEstate;
 
 namespace RealEstateGUI
 {
     public partial class MainWindow : Window
     {
-        string connStr = "server=localhost;database=ingatlan;user=root;password=";
+        List<Ad> hirdetesek = new List<Ad>();
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // SQL átnevezések (AS Id, AS Name, AS Phone) a XAML-ben megadott nevekhez igazítva
-            MySqlDataAdapter da = new MySqlDataAdapter("SELECT id AS Id, name AS Name, phone AS Phone FROM sellers ORDER BY name", connStr);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+            hirdetesek = Ad.LoadFromCsv("realestates.csv");
 
-            lbSellers.ItemsSource = dt.DefaultView;
+            // A helyi változó neve eladoLista lett, így a C# tudja, 
+            // hogy az 'eladok' a XAML-ben lévő ListBox-ra vonatkozik:
+            List<Seller> eladoLista = hirdetesek
+                .Select(a => a.Seller)
+                .GroupBy(s => s.Id)
+                .Select(g => g.First())
+                .OrderBy(s => s.Name)
+                .ToList();
+
+            eladok.ItemsSource = eladoLista;
         }
 
-        private void btnLoadAds_Click(object sender, RoutedEventArgs e)
+        private void betoltes_Click(object sender, RoutedEventArgs e)
         {
-            if (lbSellers.SelectedItem == null) return;
+            if (eladok.SelectedItem == null) return;
 
-            DataRowView sor = (DataRowView)lbSellers.SelectedItem;
-            int sellerId = Convert.ToInt32(sor["Id"]);
+            Seller kivalasztott = (Seller)eladok.SelectedItem;
 
-            MySqlDataAdapter da = new MySqlDataAdapter($"SELECT COUNT(*) FROM realestates WHERE sellerId = {sellerId}", connStr);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+            int db = hirdetesek.Count(a => a.Seller.Id == kivalasztott.Id);
 
-            tbAdCount.Text = dt.Rows[0][0].ToString();
+            tbAdCount.Text = db.ToString();
         }
     }
 }
