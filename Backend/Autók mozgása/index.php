@@ -74,7 +74,23 @@ function router()
 		case 4:
 			$cim = "4. feladat";
 			$leiras = "Kérje be a felhasználótól egy időpont óra és perc értékét, és adja meg, hogy hány jeladás történt az adott időpontban! Ha nem történt jeladás, akkor 0-t írjon ki!";
-			$megoldas = feladat4();	
+			$megoldas = feladat4();
+			break;
+		case 5:
+			$cim = "5. feladat";
+			$leiras = "Állapítsa meg, hogy mennyi az adatok szerint a legnagyobb sebesség, amellyel egy jármű a jeladáskor haladt, illetve adja meg az összes autó rendszámát, ami haladt ilyen sebességgel! Amennyiben egy jármű többször is haladt a legnagyobb sebességgel, akkor a rendszámát többször is megjelenítheti. A rendszámokat egy sorban, szóközzel elválasztva jelenítse meg a minta szerint! ";
+			$megoldas = feladat5();
+			break;
+		case 6:
+			$cim = "6. feladat";
+			$leiras = "Kérje be a felhasználótól egy jármű rendszámát, és jelenítse meg a jármű jeladásainak
+						időpontját és az adott rendszámú autó távolságát az útszakasz kezdetétől! A bevezető
+						példában az első jármű esetén a 6:04-kor a jármű távolsága az útszakasz kezdetétől 0,0 km,
+						míg 6:14-kor 15,8 km, mivel a jármű az eltelt 10 perc (10/60 óra) alatt 95 km/h-val haladt.
+						A kimenetet a mintának megfelelőn alakítsa ki, a távolságot minden esetben egy
+						tizedesjegyre kerekítve írja ki km mértékegységben! Ha nem szerepel a bekért rendszámmal
+						jármű, akkor azt egy rövid mondatban jelezze a felhasználónak! ";
+			$megoldas = feladat6();
 			break;
 	}
 	return layout($cim, $leiras, $megoldas);
@@ -136,14 +152,85 @@ function feladat3()
 
 function feladat4()
 {
+	global $adatok;
+	$megoldasForm = '
+	<form action="?menu=4" method="POST">
+		<label for="ora" class="label">Kérem, adja meg az órát:</label>
+		<input type="number" name="ora" id="ora" class="form-control">
+		<label for="perc" class="label">Kérem, adja meg a percet:</label>
+		<input type="number" name="perc" id="perc" class="form-control">
+		<button type="submit" class="btn btn-primary p-2 m-2">Küldés</button>
+	</form>';
+	$megoldas = $megoldasForm;
+	if(isset($_POST["ora"]))
+		{
+			$ora = intval($_POST["ora"]) ?? -1;
+			$perc = intval($_POST["perc"]) ?? -1;
+			$darabSzam = 0;
+			foreach($adatok as $egyAdat)
+				{
+					if($ora == $egyAdat->ora && $perc == $egyAdat->perc)
+						{
+							$darabSzam++;
+						}
+				}
+		}
+	$megoldas .= "<p><b>Jeladások száma:</b> " . $darabSzam . "</p>";
+	return $megoldas;
+}
 
+function feladat5()
+{
+	global $adatok;
+	$maxSebesseg = -1;
+	foreach($adatok as $egyAdat)
+		{
+			if($egyAdat->sebesseg > $maxSebesseg)
+				{
+					$maxSebesseg = $egyAdat->sebesseg;
+				}
+		}
+	
+	$megoldas = '<p>A legnagyobb sebesség km/h: ' . $maxSebesseg . '</p>';
+
+	$rendszamok = [];
+	for($i = 0; $i < sizeof($adatok);$i++)
+		{
+			if($adatok[$i]->sebesseg === $maxSebesseg)
+				{
+					$rendszamok[] = $adatok[$i]->rendszam;
+				}
+		}
+	$megoldas .= "A járművek:<ul><li>" . implode("</li><li>", $rendszamok) . "</li></ul>";
+
+	return $megoldas;
+}
+
+function feladat6()
+{
+	global $adatok;
+	$megoldasForm = '
+	<form action="?menu=6" method="POST">
+		<label for="rendszam" class="label">Kérem, adja meg a rendszámot:</label>
+		<input type="text" name="rendszam" id="rendszam" class="form-control">
+		<button type="submit" class="btn btn-primary p-2 m-2">Küldés</button>
+	</form>';
+	$megoldas = $megoldasForm;
+	if(isset($_POST["ora"]))
+		{
+			$ora = intval($_POST["ora"]) ?? -1;
+			$perc = intval($_POST["perc"]) ?? -1;
+			$darabSzam = 0;
+			foreach($adatok as $egyAdat)
+				{
+					if($ora == $egyAdat->ora && $perc == $egyAdat->perc)
+						{
+							$darabSzam++;
+						}
+				}
+		}
+	$megoldas .= "<p><b>Jeladások száma:</b> " . $darabSzam . "</p>";
+	return $megoldas;
 }
 ?>
 
-<form action="" method="POST">
-	<label for="ora">Kérem, adja meg az órát:</label>
-	<input type="number" name="ora" id="ora">
-	<label for="perc">Kérem, adja meg a percet:</label>
-	<input type="number" name="perc" id="perc">
-	<button type="submit">Küldés</button>
-</form>
