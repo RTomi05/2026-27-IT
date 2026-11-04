@@ -1,0 +1,48 @@
+id	nev	szulev
+1	Andrea	1960
+2	Anna	1955
+3	Antal	1983
+4	Aranka	1986
+5	Attila	1955
+6	Bence	1960
+7	Botond	1932
+8	Csenge	2004
+9	Evelin	1963
+10	Julianna	1976
+11	Kata	1993
+12	Marci	1978
+13	Matyi	1981
+14	Panni	1993
+15	Patrik	1960
+16	Rebeka	1938
+17	Ricsi	1974
+18	Vilmos	1955
+19	Vince	1952
+20	Zsombor	1999
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
