@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<style>
+		div.nav-link:hover {cursor: pointer}
+	</style>
+	<title>Keret</title>
+</head>
+<body>
+	<div class="container">
+		<header class="row">
+			<h1 class="col-12">A feladat neve</h1>
+		</header>
+		<nav class="navbar navbar-expand-lg bg-body-tertiary row">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<div class="nav-link" onclick="tartalomBetolt(1)">1. feladat</div>
+					<div class="nav-link" onclick="tartalomBetolt(2)">2. feladat</div>
+					<div class="nav-link" onclick="tartalomBetolt(3)">3. feladat</div>
+					<div class="nav-link" onclick="tartalomBetolt(4)">4. feladat</div>
+					<div class="nav-link" onclick="tartalomBetolt(5)">5. feladat</div>
+					<div class="nav-link" onclick="tartalomBetolt(6)">6. feladat</div>
+					<div class="nav-link" onclick="tartalomBetolt(7)">7. feladat</div>
+					<div class="nav-link" onclick="tartalomBetolt(8)">8. feladat</div>
+				</div>
+				</div>
+			</div>
+		</nav>
+		<main class="row">
+			<div class="col-12">
+				<h2>Feladat száma</h2>
+				<p>Leírás</p>
+				<article>Megoldás</article>
+			</div>
+		</main>
+		<footer class="row">Tomi &copy; 2026. 11. 09.</footer>
+	</div>
+
+	<script>
+		function tartalomBetolt(oldalSzam)
+		{
+			console.log(oldalSzam);
+			switch(oldalSzam)
+			{
+				case 1:
+				default:
+					document.querySelector("main div h2").innerHTML = "1. feladat";
+					document.querySelector("main div p").innerHTML = "1. feladat leírása";
+					document.querySelector("main div article").appendChild(feladat1());
+					break;
+
+				case 2:
+					document.querySelector("main div h2").innerHTML = "2. feladat";
+					document.querySelector("main div p").innerHTML = "2. feladat leírása";
+					document.querySelector("main div article").innerHTML = "2. feladat megoldása";
+					break;
+			}
+		}
+
+		function feladat1()
+		{
+			let label = document.createElement("label");
+			label.for = "nev";
+			label.innerHTML = "Adj meg egy nevet!";
+			label.className = "label";
+			let nev = document.createElement("input");
+			nev.type = "text";
+			nev.id = "nev";
+			nev.className = "form-control";
+
+			let labelSzam = document.createElement("label");
+			labelSzam.for = "szam";
+			labelSzam.innerHTML = "Adj meg egy számot!";
+			labelSzam.className = "label";
+			let szam = document.createElement("input");
+			szam.type = "number";
+			szam.id = "szam";
+			szam.className = "form-control";
+
+			let button = document.createElement("button");
+			button.className = "btn btn-primary m-3";
+			button.onclick = "bekuld()";
+			button.innerText = "Küldés";
+			let div = document.createElement("div");
+
+			div.appendChild(label);
+			div.appendChild(nev);
+			div.appendChild(labelSzam);
+			div.appendChild(szam);
+			div.appendChild(button);
+
+			return div;
+		}
+	</script>
+</body>
+</html>

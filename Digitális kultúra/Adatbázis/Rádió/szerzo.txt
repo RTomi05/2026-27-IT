@@ -1,0 +1,234 @@
+azon	veznev	utonev	szul	hal
+2	Albeniz	Isaac	1860	1909
+3	Albinoni	Tomaso	1671	1751
+4	Albrechtsberger	Johann Georg	1736	1809
+6	Anderson	Leroy	1908	
+7	Andrzejewski	Adam		
+8	Anonymus			
+205	Armstrong	Craig	1959	
+226	Arnold	David	1962	
+9	Bach	Carl Phillip Emanuel	1714	1788
+10	Bach	Johann Sebastian	1685	1750
+11	Badalamenti	Angelo	1937	1992
+232	Badelt	Klaus	1967	
+12	Balázs	Ádám	1973	
+13	Barabás	Lőrinc	1980	
+14	Barbella	Emanuele	1718	1777
+117	Barr	Nathan	1973	
+59	Barrow	Geoff	1971	
+15	Barry	John	1933	2011
+16	Bartók	Béla	1881	1945
+177	Beck	Christophe	1981	
+18	Beethoven	Ludwig van	1770	1827
+212	Belousova	Sonya	1990	
+19	Beneking	Stephen		
+40	Bensi	Danny		
+21	Berlioz	Hector	1803	1869
+23	Bernstein	Elmer	1922	2004
+89	Beving	Joep	1976	
+24	Bizet	Georges	1838	1875
+26	Boccherini	Luigi	1743	1805
+201	Boieldieu	François-Adrien	1775	1834
+183	Bource	Ludovic	1970	
+99	Bowers	Kris	1989	
+27	Brahms	Johannes	1833	1897
+120	Brittel	Nicholas	1980	
+179	Brooklyn	Duo		
+29	Brouwer	Leo	1939	
+196	Bruce	David	1970	
+30	Bruch	Max	1838	
+31	Bruckner	Anton	1824	1896
+223	Burwell	Carter	1955	
+216	Butt	Edmund	1968	
+32	Cannabich	Christian	1731	1798
+34	Capponi	Claudio	1959	
+231	Cassidy	Patrick	1956	
+33	Chopin	Fryderyk	1810	1849
+222	Cimarosa	Domenico	1749	1801
+35	Corelli	Arcangelo	1653	1713
+36	Couperin	François	1668	1733
+38	Crespo	Enrique	1941	2020
+39	Csajkovszkij	Pjotr Iljics	1840	1893
+242	Danna	Mychael	1958	
+199	Debney	John	1956	
+42	Debussy	Claude	1862	1918
+43	Delibes	Léo	1836	1891
+5	Desplat	Alexandre	1961	
+225	Destouches	André Cardinal	1672	1749
+193	Devienne	François	1759	1803
+215	Ditters von Dittersdorf	Carl	1739	1799
+131	Djawadi	Ramin	1974	
+186	Doherty	Amie	1987	
+45	Dohnányi	Ernő	1877	1960
+46	Donizetti	Gaetano	1797	1848
+47	Doppler	Ferenc	1821	1883
+48	Doyle	Patrick	1953	2020
+178	Dukas	Paul	1865	1935
+49	Dvorák	Antonín	1841	1904
+213	Einaudi	Ludovico	1955	
+206	Elfman	Danny	1953	
+194	Elgar	Edward	1857	
+52	Erkel	Ferenc	1810	1893
+53	Falconieri	Andrea	1585	1656
+78	Faltermeyer	Harold	1952	
+54	Farkas	Ferenc	1905	2000
+55	Fauré	Gabriel	1845	1924
+60	Fenton	George	1950	
+56	Fischer	Johann Caspar Ferdinand	1656	1746
+57	Frescobaldi	Girolamo	1583	1643
+58	Gabrielli	Giovanni	1557	1612
+61	Gershwin	George	1898	1937
+115	Giacchino	Michael	1967	
+62	Gilles	Bonaventure		
+63	Glinka	Mikhail	1804	1857
+64	Gluck	Christoph Willibald	1714	1787
+66	Gold	Ernest	1921	1999
+67	Goldmark	Károly	1830	1915
+88	Goldsmith	Jerry	1929	2004
+68	Górecki	Henryk	1933	2010
+69	Gossec	Francois-Joseph	1734	1829
+70	Gounod	Charles	1818	1893
+105	Göransson	Ludwig	1984	
+71	Grau	Eduardo	1919	2006
+79	Gregson-Williams	Harry	1961	
+195	Gregson-Williams	Rupert	1966	
+72	Grieg	Edvard	1843	1907
+180	Guaraldi	Vince	1928	1976
+73	Gyöngyösi	Levente	1975	
+74	Hacsaturján	Aram	1903	1978
+75	Handel	Georg Friedrich	1685	1759
+80	Haydn	Joseph	1732	1809
+22	Herrmann	Bernard	1911	1975
+81	Hisaishi	Joe	1950	1975
+82	Hoffmann	Leopold	1738	1793
+83	Holst	Gustav	1874	1934
+84	Horner	James	1953	2015
+85	Hrutka	Róbert	1972	
+188	Jablonsky	Steve	1970	
+207	Jagger	Mick	1943	
+209	Jarre	Maurice	1924	2009
+90	Jóhannsson	Jóhann	1969	2018
+204	Jones	Trevor	1949	
+95	Kabalevszkij	Dimitrij Boriszovics	1904	1987
+96	Kálmán	Imre	1882	1953
+220	Kalmus	Felicián		
+101	Karpman	Laura	1959	
+97	Kecskés D.	Balázs	1984	
+98	Kodály	Zoltán	1882	1967
+230	Korzeniowski	Abel	1972	
+208	Kreisler	Fritz	1875	1962
+100	Lai	Francis	1932	2018
+102	Lavotta	János	1764	1820
+239	Leclair	Jean-Marie	1697	1764
+103	Lehár	Ferenc	1870	1948
+104	Liszt	Ferenc	1811	1886
+182	Locatelli	Pietro Antonio	1695	1764
+221	Lunn	John	1956	
+106	Mahler	Gustav	1860	1911
+107	Malek	Miklós	1945	
+111	Mancina	Mark	1957	
+108	Mancini	Henry	1924	1994
+110	Marcello	Benedetto	1686	
+189	Marianelli	Dario	1963	
+112	Massenet	Jules	1842	1912
+241	McCreary	Bear	1979	
+114	Mendelssohn-Bartholdy	Felix	1809	1847
+202	Menken	Alan	1949	
+184	Monti	Vittorio	1868	1922
+218	Moross	Jerome	1913	1983
+51	Morricone	Ennio	1928	
+116	Mozart	Wolfgang Amadeus	1756	1791
+211	Nagy	Frigyes	1712	1786
+118	Naudot	Jacques-Christophe	1690	1762
+25	Neely	Blake	1969	
+187	Newman	David	1954	
+157	Newman	Thomas	1955	
+86	Newton Howard	James	1951	
+210	Odermatt	Gotthard	1974	
+121	Offenbach	Jacques	1819	1880
+93	Opstad	Jon	1983	
+122	Orbán	György	1947	
+123	Orff	Carl	1895	1982
+124	Ötvös	Gábor	1956	
+219	Paganini	Niccol?	1782	1840
+198	Pereira	Heitor	1960	
+125	Piazolla	Astor	1921	1992
+17	Poledouris	Basil	1945	2006
+126	Portman	Rachel	1960	2004
+91	Powell	John	1963	
+127	Pregun	Tamás	1983	
+128	Prokofjev	Szergej	1891	1953
+176	Puccini	Giacomo	1858	1924
+214	Purcell	Henry	1659	1695
+129	Rachmaninov	Sergei	1873	1943
+224	Rahman	A. R.	1967	
+130	Rameau	Jean-Philippe	1683	1764
+238	Ránki	György	1907	1992
+233	Reinecke	Carl	1824	1910
+132	Respighi	Ottorino	1879	1936
+113	Richter	Max	1966	
+133	Rimszkij-Korszakov	Nyikolaj	1844	1908
+134	Robertson	Robbie	1943	2023
+135	Rombi	Philippe	1968	
+169	Ross	William	1948	
+136	Rossini	Gioacchino	1792	1868
+137	Rota	Nino	1911	1979
+87	Russo	Jeff	1969	
+237	Ruzitska	Ignác	1795	1834
+37	Safan	Craig	1948	
+138	Saint-Saens	Camille	1835	
+139	Sammartini	Giovanni Battista	1700	1775
+229	Santaolalla	Gustavo	1951	
+140	Scarlatti	Domenico	1685	1757
+141	Schnittke	Alfred	1934	1998
+142	Schubert	Franz	1797	1828
+143	Schumann	Robert	1810	1856
+41	Schweitzer	David		
+175	Sedraya	Adila	1984	
+197	Shore	Howard	1946	
+235	Sibelius	Jean	1865	1957
+1	Silvestri	Alan	1950	
+192	Simonsen	Rob	1978	
+145	Sinding	Christian	1856	1941
+146	Smetana	Bedrich	1824	1884
+147	Somogyi	Lara	1990	
+148	Sperger	Johannes Mathias	1750	1812
+149	Steiner	Max	1888	1971
+150	Strauss	Johann	1825	1899
+243	Strauss	Johann	1804	1849
+151	Strauss	Richard	1864	1949
+109	Streitenfeld	Marc	1974	
+228	Suppé	Franz von	1819	1895
+152	Széchenyi	Ödön	1839	1922
+227	Taglietti	Giulio	1660	1718
+217	Tansman	Alexandre	1897	1986
+153	Tarr	Bernadett	1985	
+154	Tartini	Giuseppe	1692	1770
+155	Telemann	Georg Philipp	1681	1767
+156	Tessarini	Carlo	1690	1766
+172	Tiersen	Yann	1970	
+158	Tradicionális			
+94	Trapenese	Joseph	1984	
+191	Tsfasman	Alexander	1906	1971
+159	Tűzkő	Csaba	1978	
+28	Tyler	Brian	1972	
+160	Vajda	János	1949	
+161	Vaughan Williams	Ralph	1872	1958
+162	Verdi	Giuseppe	1813	1901
+163	Vivaldi	Antonio	1678	1741
+164	Volkmann	Robert	1815	1883
+200	Vukán	György	1941	2013
+165	Wagenseil	Georg Christoph	1715	1777
+166	Wagner	Richard	1813	1883
+20	Wallfish	Benjamin	1979	
+234	Warbeck	Stephen	1953	
+190	Wassenaer	Unico Wilhelm van	1692	1766
+167	Webber	Andrew Lloyd	1948	
+236	Weber	Carl Maria von	1786	1826
+168	Weiner	Leó	1885	1960
+240	Whitacre	Eric	1970	
+92	Williams	John	1932	
+171	Wolf	Péter	1947	2023
+173	Yared	Gabriel	1949	
+185	Zamfir	Gheorghe	1941	
+76	Zimmer	Hans	1957	

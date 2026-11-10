@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+	<title>Telefonos ügyfélszolgálat</title>
+	<style>
+		div.nav-link:hover {cursor: pointer}
+	</style>
+</head>
+<body onload="betoltes()">
+	<div class="container">
+		<header class="row text-center"><h1 class="col-12">2016. október - Telefonos ügyfélszolgálat</h1></header>
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+					<div class="nav-link" onclick="oldalBetolt(3)">3. feladat</div>
+					</li>
+					<li class="nav-item">
+					<div class="nav-link" onclick="oldalBetolt(4)">4. feladat</div>
+					</li>
+					<li class="nav-item">
+					<div class="nav-link" onclick="oldalBetolt(5)">5. feladat</div>
+					</li>
+					<li class="nav-item">
+					<div class="nav-link" onclick="oldalBetolt(6)">6. feladat</div>
+					</li>
+					<li class="nav-item">
+					<div class="nav-link" onclick="oldalBetolt(7)">7. feladat</div>
+					</li>
+				</ul>
+				</div>
+			</div>
+		</nav>
+		<main class="row">
+			<div class="col-12">
+				<h2>Feladat száma</h2>
+				<p>A feladat leírása</p>
+				<article>A feladat megoldása</article>
+			</div>
+		</main>
+		<footer class="row bg-dark text-white text-center">&copy; Tomi</footer>
+	</div>
+	<script>
+		let adatok;
+		function betoltes()
+		{
+			fetch("http://f6-07/frontend/cuccok/okt16.json")
+			.then(x => x.json())
+			.then(y => 
+				{
+					console.log(y);
+					adatok = y;			
+				}
+			)
+		}
+
+		function oldalBetolt(oldalSzama)
+		{
+			switch(oldalSzama)
+			{
+				case 3:
+				default:
+					document.querySelector("main div h2").innerHTML = "3. feladat";
+					document.querySelector("main div p").innerHTML = "Készítsen statisztikát, amely megadja, hogy óránként hány hívás futott be! A képernyőn soronként egy óra-darabszám párost jelenítsen meg! Csak azok az órák jelenjenek meg, amelyben volt hívás!";
+					document.querySelector("main div article").appendChild(feladat3());
+					break;
+
+				case 4:
+					document.querySelector("main div h2").innerHTML = "4. feladat";
+					document.querySelector("main div p").innerHTML = "Írja a képernyőre a leghosszabb hívásnak a sorszámát és másodpercben kifejezett hosszát – attól függetlenül, hogy a hívó tudott-e beszélni az ügyfélszolgálatossal vagy sem! Azonos híváshossz esetén elegendő egyet megjelenítenie.";
+					document.querySelector("main div article").innerHTML = feladat4();
+					break;
+
+				case 5:
+					document.querySelector("main div h2").innerHTML = "5. feladat";
+					document.querySelector("main div p").innerHTML = "Olvasson be egy munkaidőn belüli időpontot, majd jelenítse meg a képernyőn, hogy hányadik hívóval beszélt akkor az alkalmazott, és éppen hányan vártak arra, hogy sorra kerüljenek! Ha nem volt hívó, akkor a „Nem volt beszélő.” üzenetet jelenítse meg! ";
+					document.querySelector("main div article").appendChild(feladat5());
+					break;
+
+				case 6:
+					document.querySelector("main div h2").innerHTML = "6. feladat";
+					document.querySelector("main div p").innerHTML = "Írja a képernyőre, annak a hívónak az azonosítóját, akivel a munkatárs utoljára beszélt! Írja ki a várakozás másodpercekben mért hosszát is! (Ha nem kellett várnia, a várakozási idő 0.)";
+					document.querySelector("main div article").innerHTML = "6. feladat megoldása";
+					break;
+
+				case 7:
+					document.querySelector("main div h2").innerHTML = "7. feladat";
+					document.querySelector("main div p").innerHTML = "Készítse el a sikeres.txt állományt, amely az ügyfélszolgálathoz bekapcsolt hívások listáját tartalmazza! A fájl egyes soraiban a hívó sorszáma, a beszélgetés kezdete (amikor az ügyfélszolgálatos fogadta a hívást) és vége szerepeljen az alábbi mintának megfelelő formában! ";
+					document.querySelector("main div article").innerHTML = "7. feladat megoldása";
+					break;
+			}
+		}
+
+		function feladat3()
+		{
+			let statisztika = [];
+
+			adatok.forEach(e => {
+				if(statisztika[e.kezdet.ora] == undefined)
+				{
+					statisztika[e.kezdet.ora] = 0;
+				}
+				statisztika[e.kezdet.ora]++;
+			});
+
+			console.log(statisztika);
+
+			let div = document.createElement("div");
+			let table = document.createElement("table");
+			table.className = "table";
+			let thead = document.createElement("thead");
+			let tr = document.createElement("tr");
+			let th = document.createElement("th");
+			th.innerHTML = "Óra";
+			let thszam = document.createElement("th");
+			thszam.innerHTML = "Hívások száma";
+			tr.appendChild(th);
+			tr.appendChild(thszam);
+			thead.appendChild(tr);
+			
+			let tbody = document.createElement("tbody");
+			statisztika.forEach((e,i) => 
+			{
+				tr = document.createElement("tr");
+				let td = document.createElement("td");
+				td.innerHTML = i;
+				tr.appendChild(td);
+				td = document.createElement("td");
+				td.innerHTML = e;
+				tr.appendChild(td);
+				tbody.appendChild(tr);
+			})
+
+			table.appendChild(thead);
+			table.appendChild(tbody);
+			div.appendChild(table);
+
+			return div;
+		}
+
+		function idokonverzio(kezdet, veg)
+		{
+			let k = kezdet.ora * 3600 + kezdet.perc * 60 + kezdet.masodperc;
+			let v = veg.ora * 3600 + veg.perc * 60 + veg.masodperc;
+			return v - k;
+		}
+
+		function feladat4()
+		{
+			let leghosszabb = 0;
+			let sorszam = 0;
+
+			adatok.forEach((e, index) => {
+				let hossz = idokonverzio(e.kezdet, e.veg);
+				if (hossz > leghosszabb) {
+					leghosszabb = hossz;
+					sorszam = index + 1;
+				}
+			});
+
+			return `A leghosszabb hívás sorszáma: ${sorszam}, hossza: ${leghosszabb} másodperc.`;
+		}
+
+		function feladat5()
+		{
+			let div = document.createElement("div");
+			let label = document.createElement("label");
+			label.for = "idopont";
+			let input = document.createElement("input");
+			input.type = "time";
+			input.id = "idopont";
+			input.className = "form-control";
+			let button = document.createElement("button");
+			button.className = "btn btn-dark mt-2"
+			button.innerHTML = "Beküldés";
+			button.onclick = "bekuld()";
+
+			div.appendChild(label);
+			div.appendChild(input);
+			div.appendChild(button);
+
+			return div;
+		}
+	</script>
+</body>
+</html>

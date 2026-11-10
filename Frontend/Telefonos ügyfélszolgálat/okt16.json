@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "kezdet": { "ora": 6, "perc": 51, "masodperc": 8 },
+    "veg": { "ora": 6, "perc": 54, "masodperc": 58 }
+  },
+  {
+    "id": 2,
+    "kezdet": { "ora": 6, "perc": 52, "masodperc": 30 },
+    "veg": { "ora": 6, "perc": 57, "masodperc": 54 }
+  },
+  {
+    "id": 3,
+    "kezdet": { "ora": 6, "perc": 52, "masodperc": 43 },
+    "veg": { "ora": 6, "perc": 53, "masodperc": 52 }
+  },
+  {
+    "id": 4,
+    "kezdet": { "ora": 6, "perc": 53, "masodperc": 45 },
+    "veg": { "ora": 6, "perc": 53, "masodperc": 50 }
+  },
+  {
+    "id": 5,
+    "kezdet": { "ora": 6, "perc": 54, "masodperc": 23 },
+    "veg": { "ora": 6, "perc": 58, "masodperc": 23 }
+  },
+  {
+    "id": 6,
+    "kezdet": { "ora": 6, "perc": 54, "masodperc": 59 },
+    "veg": { "ora": 6, "perc": 59, "masodperc": 7 }
+  },
+  {
+    "id": 7,
+    "kezdet": { "ora": 6, "perc": 55, "masodperc": 6 },
+    "veg": { "ora": 7, "perc": 0, "masodperc": 39 }
+  },
+  {
+    "id": 8,
+    "kezdet": { "ora": 6, "perc": 56, "masodperc": 14 },
+    "veg": { "ora": 7, "perc": 0, "masodperc": 32 }
+  },
+  {
+    "id": 9,
+    "kezdet": { "ora": 6, "perc": 57, "masodperc": 11 },
+    "veg": { "ora": 7, "perc": 0, "masodperc": 57 }
+  },
+  {
+    "id": 10,
+    "kezdet": { "ora": 6, "perc": 58, "masodperc": 15 },
+    "veg": { "ora": 7, "perc": 0, "masodperc": 36 }
+  },
+  {
+    "id": 11,
+    "kezdet": { "ora": 6, "perc": 58, "masodperc": 51 },
+    "veg": { "ora": 7, "perc": 1, "masodperc": 9 }
+  },
+  {
+    "id": 12,
+    "kezdet": { "ora": 6, "perc": 59, "masodperc": 26 },
+    "veg": { "ora": 7, "perc": 1, "masodperc": 40 }
+  },
+  {
+    "id": 13,
+    "kezdet": { "ora": 6, "perc": 59, "masodperc": 34 },
+    "veg": { "ora": 6, "perc": 59, "masodperc": 39 }
+  },
+  {
+    "id": 14,
+    "kezdet": { "ora": 7, "perc": 0, "masodperc": 11 },
+    "veg": { "ora": 7, "perc": 1, "masodperc": 28 }
+  },
+  {
+    "id": 15,
+    "kezdet": { "ora": 7, "perc": 1, "masodperc": 29 },
+    "veg": { "ora": 7, "perc": 3, "masodperc": 23 }
+  },
+  {
+    "id": 16,
+    "kezdet": { "ora": 7, "perc": 2, "masodperc": 47 },
+    "veg": { "ora": 7, "perc": 4, "masodperc": 22 }
+  },
+  {
+    "id": 17,
+    "kezdet": { "ora": 7, "perc": 3, "masodperc": 35 },
+    "veg": { "ora": 7, "perc": 4, "masodperc": 59 }
+  },
+  {
+    "id": 18,
+    "kezdet": { "ora": 7, "perc": 4, "masodperc": 13 },
+    "veg": { "ora": 7, "perc": 5, "masodperc": 41 }
+  },
+  {
+    "id": 19,
+    "kezdet": { "ora": 7, "perc": 5, "masodperc": 16 },
+    "veg": { "ora": 7, "perc": 10, "masodperc": 30 }
+  },
+  {
+    "id": 20,
+    "kezdet": { "ora": 7, "perc": 6, "masodperc": 38 },
+    "veg": { "ora": 7, "perc": 9, "masodperc": 11 }
+  },
+  {
+    "id": 21,
+    "kezdet": { "ora": 7, "perc": 7, "masodperc": 2 },
+    "veg": { "ora": 7, "perc": 8, "masodperc": 15 }
+  },
+  {
+    "id": 22,
+    "kezdet": { "ora": 7, "perc": 7, "masodperc": 26 },
+    "veg": { "ora": 7, "perc": 12, "masodperc": 31 }
+  },
+  {
+    "id": 23,
+    "kezdet": { "ora": 7, "perc": 8, "masodperc": 46 },
+    "veg": { "ora": 7, "perc": 12, "masodperc": 31 }
+  },
+  {
+    "id": 24,
+    "kezdet": { "ora": 7, "perc": 9, "masodperc": 0 },
+    "veg": { "ora": 7, "perc": 13, "masodperc": 26 }
+  },
+  {
+    "id": 25,
+    "kezdet": { "ora": 7, "perc": 9, "masodperc": 43 },
+    "veg": { "ora": 7, "perc": 14, "masodperc": 51 }
+  },
+  {
+    "id": 26,
+    "kezdet": { "ora": 7, "perc": 10, "masodperc": 41 },
+    "veg": { "ora": 7, "perc": 13, "masodperc": 56 }
+  },
+  {
+    "id": 27,
+    "kezdet": { "ora": 7, "perc": 10, "masodperc": 52 },
+    "veg": { "ora": 7, "perc": 15, "masodperc": 4 }
+  },
+  {
+    "id": 28,
+    "kezdet": { "ora": 7, "perc": 11, "masodperc": 35 },
+    "veg": { "ora": 7, "perc": 13, "masodperc": 16 }
+  },
+  {
+    "id": 29,
+    "kezdet": { "ora": 7, "perc": 12, "masodperc": 47 },
+    "veg": { "ora": 7, "perc": 16, "masodperc": 12 }
+  },
+  {
+    "id": 30,
+    "kezdet": { "ora": 7, "perc": 13, "masodperc": 13 },
+    "veg": { "ora": 7, "perc": 16, "masodperc": 4 }
+  }
+]

@@ -1,0 +1,69 @@
+id	nev
+1	komikus opera
+2	társadalmi dráma
+3	mesejáték
+4	lírai dráma
+5	abszurd játék
+6	szatíra
+7	dráma
+8	rockopera
+9	operakoncert
+10	zenés előadás
+11	krimi vígjáték
+12	zenés est
+13	abszurd dráma
+14	kísérleti színház
+15	görög tragédia
+16	fekete komédia
+17	színpadi játék
+18	anekdota
+19	színmű
+20	romantikus vígjáték
+21	zenés vígjáték
+22	zenés mesejáték
+23	felolvasószínház
+24	operett
+25	meseopera
+26	romantikus dráma
+27	színjáték
+28	vígjáték
+29	groteszk
+30	zenedráma
+31	koncertszerű opera
+32	operett gála
+33	zenés komédia
+34	zenés bohózat
+35	kortárs dráma
+36	beavató színház
+37	történelmi dráma
+38	szatirikus dráma
+39	abszurd komédia
+40	ballada, zenés előadás
+41	passiójáték
+42	opera
+43	nagyoperett
+44	zenés revü
+45	revüoperett
+46	tragikomédia
+47	zenés tragikomédia
+48	zenés kabaré
+49	népszínmű
+50	melodráma
+51	zenés játék
+52	játék
+53	meseoperett
+54	revümusical
+55	monodráma
+56	bohózat
+57	vígopera
+58	komédia
+59	abszurd kísérleti színház
+60	mesebalett
+61	abszurd vígjáték
+62	daljáték
+63	mesemusical
+64	tragédia
+65	zenés dráma
+66	musical
+67	gála
+68	bűnügyi komédia
