@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<title>Múzeumok</title>
+	<style>
+		div.nav-link:hover {cursor: pointer}
+	</style>
+</head>
+<body onload="betolt()">
+	<header class="row text-center m-2"><h1>Múzeumok - 2026. 10. 20.</h1></header>
+	<nav class="navbar navbar-expand-lg bg-body-tertiar">
+		<div class="container">
+			<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+				<div class="nav-link" onclick="oldalBetolt(2)">2. feladat</div>
+				</li>
+				<li class="nav-item">
+				<div class="nav-link" onclick="oldalBetolt(3)">3. feladat</div>
+				</li>
+				<li class="nav-item">
+				<div class="nav-link" onclick="oldalBetolt(4)">4. feladat</div>
+				</li>
+				<li class="nav-item">
+				<div class="nav-link" onclick="oldalBetolt(5)">5. feladat</div>
+				</li>
+				<li class="nav-item">
+				<div class="nav-link" onclick="oldalBetolt(6)">6. feladat</div>
+				</li>
+				<li class="nav-item">
+				<div class="nav-link" onclick="oldalBetolt(7)">7. feladat</div>
+				</li>
+				<li class="nav-item">
+				<div class="nav-link" onclick="oldalBetolt(9)">9. feladat</div>
+				</li>
+			</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<main class="row text-center m-2">
+			<h2>A feladat száma</h2>
+			<p>A feladat leírása</p>
+			<article>A feladat megoldása</article>
+		</main>
+	</div>
+	<footer class="row text-center m-2"><h4>2026. 11. 11. - Rengel Tomi &copy;</h4></footer>
+</body>
+<script>
+	let adatok;
+	function betolt()
+	{
+		fetch("http://172.16.0.251/feladatok/muzeumok/api")
+		.then(x => x.json())
+		.then( y =>
+			{
+				adatok = y;
+				//console.log(y);
+				console.log(adatok);
+			}
+		)
+	}
+
+	function oldalBetolt(oldalSzam)
+	{
+		switch(oldalSzam)
+		{
+			case 2:
+				document.querySelector("div main h2").innerHTML = "2. feladat";
+				document.querySelector("div main p").innerHTML = "Fontos adat, hogy hány látogató volt a városi múzeumokban az adott napon összesen. Írassa ki az eredményt a mintához hasonlóan a képernyőre! Ha valaki napijegyet vett, akkor őt annyiszor vegye figyelembe, ahány múzeumba ténylegesen be is lépett!";
+				document.querySelector("div main article").innerHTML = "";
+				document.querySelector("div main article").appendChild(feladat2());
+				break;
+
+			case 3:
+				document.querySelector("div main h2").innerHTML = "3. feladat";
+				document.querySelector("div main p").innerHTML = " Határozza meg, hogy mikor és melyik kiállításra lépett be az első és az utolsó látogató! Jelenítse meg a képernyőn a két időpontot és múzeumnevet a mintához hasonlóan! ";
+				document.querySelector("div main article").innerHTML = "";
+				document.querySelector("div main article").appendChild(feladat3());
+				break;
+
+			case 4:
+				document.querySelector("div main h2").innerHTML = "4. feladat";
+				document.querySelector("div main p").innerHTML = "Kérje be egy jegy sorszámát, majd írassa ki a képernyőre, hogy az illető a nap folyamán mikor, melyik múzeumba lépett be! Ha nincs ilyen sorszámú jegy, ne jelenjen meg semmi! ";
+				document.querySelector("div main article").innerHTML = "";
+				document.querySelector("div main article").appendChild(feladat4Keszit());
+				break;
+
+			case 5:
+				document.querySelector("div main h2").innerHTML = "5. feladat";
+				document.querySelector("div main p").innerHTML = "Az igazgatóság szeretné zárás előtt 30 perccel megszüntetni a jegyek eladását. Jogos-e ez a döntés? Határozza meg, hogy mennyi idő telt el az utolsó jegy megvásárlása és a zárás között! A választ óra:perc formátumban írassa ki a képernyőre! A vezető nullákat nem kell megjelenítenie. Tudjuk, hogy valamennyi múzeum pontosan 18:00-kor zár. ";
+				document.querySelector("div main article").innerHTML = "";
+				document.querySelector("div main article").appendChild(feladat5());
+				break;
+
+			case 6:
+				document.querySelector("div main h2").innerHTML = "6. feladat";
+				document.querySelector("div main p").innerHTML = "Mennyi volt a múzeum teljes bevétele az adott napon? A bevételt a mintának megfelelően írassa ki a képernyőre!";
+				document.querySelector("div main article").innerHTML = "";
+				document.querySelector("div main article").appendChild(feladat6());
+				break;
+
+			case 7:
+				document.querySelector("div main h2").innerHTML = "7. feladat";
+				document.querySelector("div main p").innerHTML = "Igaz-e, hogy a napijegyet váltók általában a Kastélyban kezdenek? Adjon teljes mondatban pozitív választ, ha aznap a napijegyet váltók több mint a fele a Kastélyban kezdett, egyébként adjon negatív választ! Például „A napijegyet váltók általában nem a Kastélyban kezdtek.”";
+				document.querySelector("div main article").innerHTML = "";
+				document.querySelector("div main article").appendChild(feladat7());
+				break;
+
+			case 9:
+				document.querySelector("div main h2").innerHTML = "9. feladat";
+				document.querySelector("div main p").innerHTML = "Sajnos a napijegyet vásárlóknak csak egy része tekinti meg az összes kiállítást. Nekik a múzeum igazgatósága egy ajándéktárggyal külön is kedveskedni szeretne, melyet az utolsó kiállításra való belépéskor adnának át. Írassa ki a képernyőre a mintának megfelelő elrendezésben oszlopokra tagolva, hogy az érintett látogatók milyen sorszámú jeggyel, melyik múzeumban és mikor vehetnék át az ajándékot! ";
+				document.querySelector("div main article").innerHTML = "Megoldás 9";
+				break;
+		}
+	}
+
+	function feladat2()
+	{
+		let div = document.createElement("div");
+		div.innerHTML = `Az adott napon összesen <b> ${adatok.length} </b> látogató volt.`;
+		return div;
+	}
+
+	function feladat3()
+	{
+		let div3 = document.createElement("div");
+		div3.innerHTML = `Az első látogató <b> ${adatok[0].ido}-kor </b> lépett a(z) <i> ${adatok[0].hely} </i> helyszínre.
+		<br>Az utolsó látogató <b> ${adatok[adatok.length-1].ido}-kor </b> lépett a(z) <i> ${adatok[adatok.length-1].hely} </i> helyszínre.`;
+		return div3; 
+	}
+
+	function feladat4Keszit()
+	{
+		let div = document.createElement("div");
+		let label = document.createElement("label");
+		label.className = "label m-3";
+		label.textContent = "Adja meg a jegy sorszámát:"
+		let input = document.createElement("input");
+		input.className = "form-control m-3";
+		input.id = "sorszam"
+		input.value = "R123805";
+		let button = document.createElement("button");
+		button.className = "btn btn-primary m-3";
+		button.textContent = "Küldés";
+		button.addEventListener("click",feladat4);
+
+		div.appendChild(label);
+		div.appendChild(input);
+		div.appendChild(button);
+
+		return div;
+	}
+
+	function feladat4()
+	{
+		let sorszam = document.getElementById("sorszam").value;
+		//console.log(sorszam);
+		let div4 = document.createElement("div");
+		document.querySelector("div main article").innerHTML = "<ol>";
+		adatok.forEach(x => 
+			{
+				if(x.jegyId === sorszam)
+				{
+					//console.log(x.ido, x.hely);
+					document.querySelector("div main article").innerHTML += "<li>" + x.ido + " " + x.hely + "</li>";
+				}
+			}
+		)
+		document.querySelector("div main article").innerHTML += "</ol>";
+	}
+
+	function feladat5()
+	{
+		let adatokJegyes = [];
+		let div5 = document.createElement("div");
+		adatok.forEach(x => 
+			{
+				if(x.ar != 0)
+				{
+					adatokJegyes.push(x.zarasElott);
+				}
+			}
+		)
+		div5.innerHTML = `Az utolsó jegyvásárló<b> ${adatokJegyes[adatokJegyes.length-1]}</b> perccel a zárás előtt vett jegyet.`
+		return div5;
+	}
+
+	function feladat6()
+	{
+		let div6 = document.createElement("div");
+		let osszeg = 0;
+		adatok.forEach(x =>
+			{
+				osszeg += x.ar;
+			}
+		)
+		div6.innerHTML = `A múzeum teljes bevétele az adott napon ${osszeg} Ft volt.`;
+		//console.log(osszeg);
+		return div6;
+	}
+
+	function feladat7()
+	{
+		let darabOssz = 0;
+		darabKastely = 0;
+		let div7 = document.createElement("div");
+		adatok.forEach(x => 
+			{
+				if(x.ar != 0 && x.jegyTipus == "TN" || x.ar != 0 && x.jegyTipus == "KN" )
+				{
+					darabOssz++;
+					if(x.hely == "Kastély")
+					{
+						darabKastely++;
+					}
+				}
+			}
+		)
+		console.log(darabOssz, darabKastely)
+		if(darabKastely > (darabOssz/2))
+		{
+			div7.innerHTML = "A napijegyet váltók általában a Kastélyban kezdtek."; 
+		}
+		else
+		{
+			div7.innerHTML = "A napijegyet váltók általában nem a Kastélyban kezdtek."; 	
+		}
+		return div7;
+	}
+</script>
+</html>
