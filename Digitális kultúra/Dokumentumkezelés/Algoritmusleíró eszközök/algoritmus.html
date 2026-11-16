@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="stilus.css">
+	<title>Algoritmusleíró eszközök</title>
+</head>
+<body>
+<h1>Algoritmusleíró eszközök</h1>
+
+<h2>A programfejlesztés lépései</h2>
+
+<p>A számítógépes programok készítése összetett folyamat, mely általában az alábbi részekre bontható:</p>
+<ol>
+<li>a feladat pontos meghatározása (specifikáció);</li>
+<li>a feladat megoldásának kitalálása, majd a megoldás lépéseinek meghatározása (algoritmuskészítés);</li>
+<li>a készült algoritmus alapján a program elkészítése egy adott programozási nyelven (kódolás);</li>
+<li>az elkészült programkód fordítása és futtatása, a futási eredmények vizsgálata (tesztelés, hibakeresés);</li>
+<li>a program használatához és továbbfejlesztéséhez szükséges leírások elkészítése (dokumentáció).</li>
+</ol>
+
+<p>A fent leírt pontok a legegyszerűbb esetben időben egymás után következnek, de sokszor van eltérés. Például a dokumentáció mindegyik lépés tanulságait tartalmazza, így a programkészítés során folyamatosan bővül. Vagy a tesztelés során talált hibák néha a specifikáció pontosítását, az algoritmus és a program módosítását is magukkal hozzák. Ezután persze ismételten tesztelni kell a programot, vajon az az elvárásoknak megfelelően működik-e, és ha nem, akkor ismét változtatni kell.
+
+<p>Az egyszerűbb feladatok megoldásakor a fenti lépések közül néhány elmarad, vagy csak gondolatban történik meg. Előfordul, hogy nem készül dokumentáció, csak a forrásprogramba kerül néhány sor, ami röviden ismerteti az egyes kódrészleteket. Sok esetben az algoritmus nem kerül leírásra, csak a forrásprogram készül el. Ez egyszerűsíti a fejlesztő munkáját, kiolvasható belőle a megoldás gondolatmenete, mégis vannak hátrányai. Például a programozó felhasználja az adott programozási nyelv sajátosságait, ezért a megoldás nem lesz általános, nehezen átültethető más programozási nyelvre.</p>
+
+<p>Az összetett programok készítése során ezért javasolják az algoritmus lejegyzését. Az algoritmus leírása a programozás tanulása során is fontos, segíti az algoritmikus gondolkodás fejlődését, az egyes gondolati lépések jobb megértését.</p>
+
+<p>A továbbiakban néhány algoritmusleíró eszközt mutatunk be az <a href="https://hu.wikipedia.org/wiki/Euklideszi_algoritmus">Euklideszi algoritmus</a> segítségével, amely két pozitív egész szám legnagyobb közös osztójának kiszámítását végzi. Az algoritmus bemenete a két pozitív egész szám, eredménye a legnagyobb közös osztó.</p></p>
+
+<h2>Folyamatábra</h2>
+
+<p>Az egyik legkorábban kialakult algoritmusleíró eszköz. Neumann János és Herman Goldstine munkáiban találjuk meg először, ők fejlesztették és javasolták a használatát munkatársaiknak az első számítógépek építése idején, az 1940-es években. A lépések folyamatát egy irányított vonal jelzi, mely egy kezdő elemből indul és egy záró elemben végződik. Az egyszerű utasítások egy-egy téglalap alakú dobozban találhatók, míg a bejövő vagy kimenő adatokat egy paralelogramma jelzi. A folyamat döntési pontok segítségével több ágra bontható, így létrehozhatók elágazások és ismétlések.</p>
+<img src="folyamat.svg" alt="Folyamatábra">
+
+<h2>Struktogram</h2>
+
+<p>Az 1960-as években kialakult a strukturált programozás, amely egyik alapvetése, hogy csak bizonyos programszerkezetek használatát javasolja:</p>
+
+<ul>
+<li>szekvencia - az utasítások egymás utáni végrehajtása</li>
+<li>elágazás - egy feltétel értékétől függően különböző utasítások hajthatók végre, a programvezérlés több ágra bontható</li>
+<li>iteráció - egy feltétel értékétől függően az utasítások egy csoportja újra és újra végrehajtható</li>
+</ul>
+
+<p>Sikerült igazolni, hogy a nem strukturált programszerkezetek használatával elkészített programoknak van strukturált megfelelője, így a megoldható problémák körét nem szűkíti, ha csak strukturált elemeket alkalmazunk. Így a '70-es évektől a strukturált programozást egyre szélesebb körben alkalmazták. Mivel a folyamatábra nem strukturált elemek létrehozását is lehetővé teszi, ezért létrehozták a csak strukturált elemeket tartalmazó algoritmusleíró eszközt, a struktogramot.</p>
+
+<table class="struktogram">
+	<tr>
+		<td colspan="2">Be: a, b</td>
+	</tr>
+	<tr>
+		<td colspan="2">m := a MOD b</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="ciklus">m > 0</td>
+	</tr>
+	<tr><td class="balsav">&nbsp;</td>
+		<td>a := b</td>
+	</tr>
+	<tr><td class="balsav">&nbsp;</td>
+		<td>b := m</td>
+	</tr>
+	<tr><td class="balsav">&nbsp;</td>
+		<td>m := a MOD b</td>
+	</tr>
+	<tr>
+		<td colspan="2">Ki: b</td>
+	</tr>
+</table>
+
+<h2>Mondatszerű leírás</h2>
+
+<p>A forrásprogramhoz hasonlóan az algoritmusok is leírhatók szöveggel. Ebben az esetben is a strukturált programozásnál alkalmazott programszerkezeteket alkalmazzuk, tehát szekvencia, elágazás és iteráció fordul elő. A tagolás és a jobb olvashatóság érdekében általában egy sorban egy utasítást helyezünk el, valamint az elágazások ágait és a ciklusok magját tagolással is jelezzük.</p>
+
+<pre>
+Be: a, b
+m := a MOD b
+Ciklus amíg m > 0
+    a := b
+    b := m
+    m := a MOD b
+Ciklus vége
+Ki : b
+</pre>
+
+</body>
+</html>

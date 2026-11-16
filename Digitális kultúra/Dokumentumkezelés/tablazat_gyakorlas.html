@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Táblázat gyakorlás</title>
+	<style>
+		table td{
+			border: 2px solid black;
+		}
+
+		table th{
+			border: 2px solid black;
+		}
+		caption{
+			font-weight: bold;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<caption>Táblázat</caption>
+		<tr>
+			<th>Név</th>
+			<th>Osztály</th>
+			<th>Email</th>
+		</tr>
+		<tr>
+			<td>Ő</td>
+			<td>1.A</td>
+			<td>wrigwin</td>
+		</tr>
+		<tr>
+			<td>Ő2</td>
+			<td>1.B</td>
+			<td>wrigwirhrewn</td>
+		</tr>
+		<tr>
+			<td>Ő3</td>
+			<td>2.A</td>
+			<td>rtjigwin</td>
+		</tr>
+		<tr>
+			<td>Ő4</td>
+			<td>2.B</td>
+			<td>ejho</td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<table>
+    <tr>
+        <th colspan="2">Versenyeredmények (3 oszlopnyi széles fejléc)</th>
+		<th>%</th>
+    </tr>
+    <tr>
+        <td>1. hely</td>
+        <td>Nagy Péter</td>
+        <td>98%</td>
+    </tr>
+	<tr>
+        <td>1. hely</td>
+        <td>Nagy Péter</td>
+        <td>98%</td>
+    </tr>
+	<tr>
+        <td>1. hely</td>
+        <td>Nagy Péter</td>
+        <td>98%</td>
+    </tr>
+	<tr>
+		<td>2. hely</td>
+        <td colspan="2">Nagy Áron - 85%</td>
+	</tr>
+</table>
+<br>
+<br>
+<table>
+    <tr>
+        <!-- Ez a cella 2 sor magas lesz, tehát lenyúlik a következő sorba is -->
+        <td rowspan="2">Hétfő</td>
+        <td>1. óra: Matematika</td>
+    </tr>
+    <tr>
+        <!-- Ide NEM írunk első cellát, mert a "Hétfő" cella még tart! -->
+        <td>2. óra: Digitális kultúra</td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+<table>
+    <tr>
+        <th colspan="3">Hétvégi program</th>
+    </tr>
+    <tr>
+        <th>Nap</th>
+        <th>Napszak</th>
+        <th>Program</th>
+    </tr>
+    <tr>
+        <td rowspan="2">Szombat</td>
+        <td>Délelőtt</td>
+        <td>Kirándulás</td>
+    </tr>
+    <tr>
+        <!-- A "Szombat" cella miatt itt csak 2 db <td> szerepel -->
+        <td>Délután</td>
+        <td>Mozi</td>
+    </tr>
+	<tr>
+		<td>Vasárnap</td>
+        <td>Délután</td>
+        <td>Mozi</td>
+    </tr>
+</table>
+
+<!--
++-------------------------------------------+
+|                  Órarend                  |  <- 1. sor (fejléc, 3 oszlop széles)
++----------+--------------------+-----------+
+|   Nap    |      Tantárgy      |   Terem   |  <- 2. sor (fejlécek)
++----------+--------------------+-----------+
+|          | Matematika         | 104       |  <- 3. sor
+|   Kedd   +--------------------+-----------+
+|          | Digitális kultúra  | 205       |  <- 4. sor
++----------+--------------------+-----------+
+-->
+
+<br>
+<br>
+<table>
+	<tr>
+	<th colspan="3">Órarend</th>
+	</tr>
+	<tr>
+		<th>Nap</th>
+		<th>Tantárgy</th>
+		<th>Terem</th>
+	</tr>
+	<tr>
+		<td rowspan="2">Kedd</td>
+		<td>Matematika</td>
+		<td>104</td>
+	</tr>
+	<tr>
+		<td>Digitális kultúra</td>
+		<td>205</td>
+	</tr>
+</table>
+
+<br>
+<br>
+
+<!--
++-------------------------------------------------------+
+|                    Eredménytábla                      |  <- 1. sor
++-----------------------+---------------+---------------+
+|       Versenyző       |   Kategória   |   Pontszám    |  <- 2. sor
++-------------+---------+---------------+---------------+
+|             |         | Webfejlesztés | 95            |  <- 3. sor
+|  Nagy Anna  |  10. A  +---------------+---------------+
+|             |         | Adatbázis     | 88            |  <- 4. sor
++-------------+---------+---------------+---------------+
+-->
+
+<table>
+	<tr>
+		<th colspan="4">Eredménytábla</th>
+	</tr>
+	<tr>
+		<th colspan="2">Versenyző</th>
+		<th>Kategória</th>
+		<th>Pontszám</th>
+	</tr>
+	<tr>
+		<td rowspan="2">Nagy Anna</td>
+		<td rowspan="2">10. A</td>
+		<td>Webfejlesztés</td>
+		<td>95</td>
+	</tr>
+	<tr>
+		<td>Adatbázis</td>
+		<td>88</td>
+	</tr>
+</table>
+
+<br>
+<br>
+
+<!--
++-------------------------------------------------------+
+|                Félévi vizsgaeredmények                |  <- 1. sor
++---------------+---------------------------+-----------+
+|    Tagozat    |     Tantárgy és szint     |   Átlag   |  <- 2. sor
++---------------+-------------------+-------+-----------+
+|               | Digitális kultúra | Emelt | 4,85      |  <- 3. sor
+|  Informatika  +-------------------+-------+-----------+
+|               | Matematika        | Közép | 4,40      |  <- 4. sor
++---------------+-------------------+-------+-----------+
+|             Összesített átlag             | 4,63      |  <- 5. sor
++-------------------------------------------+-----------+
+-->
+<table>
+	<tr>
+		<th colspan="4">Félévi vizsgaeredmények</th>
+	</tr>
+	<tr>
+		<th>Tagozat</th>
+		<th colspan="2">Tantárgy és szint</th>
+		<th>Átlag</th>
+	</tr>
+	<tr>
+		<td rowspan="2">Informatika</td>
+		<td>Digitális kultúra</td>
+		<td>Emelt</td>
+		<td>4,85</td>
+	</tr>
+	<tr>
+		<td>Matematika</td>
+		<td>Közép</td>
+		<td>4,40</td>
+	</tr>
+	<tr>
+		<td colspan="3">Összesített átlag</td>
+		<td>4,63</td>
+	</tr>
+</table>
+</body>
+</html>

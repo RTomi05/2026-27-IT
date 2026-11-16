@@ -1,5 +1,4 @@
 <?php
-
 $adatok = betolt();
 //var_dump($adatok);
 echo router();

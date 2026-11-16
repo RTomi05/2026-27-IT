@@ -1,0 +1,51 @@
+body {
+    background-color: #def;
+    margin: 3em;
+    font-family: "Podovka";
+    font-size: 12pt;
+}
+
+.struktogram {
+    border-collapse: collapse;
+    margin: auto;
+	border: 2px solid black;
+	font-family: 'Open Sans';
+	font-size: 12pt;
+}
+
+.struktogram td {
+    padding: 0.5em;
+    border: 2px solid black;
+}
+
+td.balsav{
+	width: 1.5em;
+	border: none;
+}
+
+td.ciklus {
+    border-bottom: none;
+    text-align: center;
+}
+
+pre {
+    font-family: "Open Sans";
+    font-size: 12pt;
+    padding: 0.5em;
+	width: 12em;
+	margin: auto;
+	background-color: #D3D3D3;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+p{
+	text-align: justify;
+}
+
+img{
+	display: block;
+	margin: auto;
+}
+
+
