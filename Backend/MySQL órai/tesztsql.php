@@ -26,10 +26,19 @@ if(isset($_POST["adat"]))
 
 	//itt lesz az SQL
 
-	foreach($adatok as $adat)
+	$sql = "SELECT * FROM probaadat";
+	$result = $conn -> query($sql);
+	while($row = $result -> fetch_row())
 		{
 			
 		}
+	$tabla = "<table>";
+
+	foreach($adatok as $adat)
+		{
+
+		}
+	$tabla = "</table>";
 
 	$conn -> close();
 ?>
